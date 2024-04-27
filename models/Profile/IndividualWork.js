@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../../config/connectingDB.js";
+import sequelize from "../../config/connectingDB.js";
 
 const IndividualWork = sequelize.define(
   "IndividualWork",

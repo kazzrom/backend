@@ -8,6 +8,7 @@ const PersonalData = sequelize.define(
     studentId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true,
       references: {
         model: Student,
         key: "id",
