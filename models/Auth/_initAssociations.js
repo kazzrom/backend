@@ -1,7 +1,7 @@
-import User from "./User";
-import RefreshSession from "./RefreshSession";
+import User from "./User.js";
+import RefreshSession from "./RefreshSession.js";
 
 export default () => {
-  User.hasMany(RefreshSession);
-  RefreshSession.belongsTo(User);
+  User.hasMany(RefreshSession, { foreignKey: "userId" });
+  RefreshSession.belongsTo(User, { foreignKey: "userId" });
 };
