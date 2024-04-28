@@ -6,6 +6,7 @@ export default () => {
     through: "Familyties",
     foreignKey: "studentId",
     timestamps: false,
+    onDelete: "CASCADE",
   });
 
   FamilyMember.belongsToMany(Student, {

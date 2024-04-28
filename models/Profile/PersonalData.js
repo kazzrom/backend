@@ -1,19 +1,9 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/connectingDB.js";
-import Student from "../Group/Student.js";
 
 const PersonalData = sequelize.define(
   "PersonalData",
   {
-    studentId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      references: {
-        model: Student,
-        key: "id",
-      },
-    },
     birthday: {
       type: DataTypes.DATEONLY,
       allowNull: false,

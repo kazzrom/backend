@@ -5,15 +5,24 @@ import StudentAttitudes from "./StudentAttitudes.js";
 import StudentPersonality from "./StudentPersonality.js";
 
 export default () => {
-  Student.hasMany(Hobby, { foreignKey: "studentId" });
+  Student.hasMany(Hobby, { foreignKey: "studentId", onDelete: "CASCADE" });
   Hobby.belongsTo(Student, { foreignKey: "studentId" });
 
-  Student.hasMany(Inclination, { foreignKey: "studentId" });
+  Student.hasMany(Inclination, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
   Inclination.belongsTo(Student, { foreignKey: "studentId" });
 
-  Student.hasOne(StudentAttitudes, { foreignKey: "studentId" });
+  Student.hasOne(StudentAttitudes, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
   StudentAttitudes.belongsTo(Student, { foreignKey: "studentId" });
 
-  Student.hasOne(StudentPersonality, { foreignKey: "studentId" });
+  Student.hasOne(StudentPersonality, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
   StudentPersonality.belongsTo(Student, { foreignKey: "studentId" });
 };
