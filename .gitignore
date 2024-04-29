@@ -4,6 +4,4 @@ node_modules
 .flaskenv*
 !.env.project
 !.env.vault
-test.js
-testModels
-testSyncDb.js
+tests
