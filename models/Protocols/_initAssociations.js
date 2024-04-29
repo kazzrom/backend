@@ -29,4 +29,6 @@ export default () => {
 
   Group.hasMany(Homeroom, { foreignKey: "groupId", onDelete: "CASCADE" });
   Homeroom.belongsTo(Group, { foreignKey: "groupId" });
+
+  return { Group, ParentMeeting, GroupMeeting, Homeroom };
 };

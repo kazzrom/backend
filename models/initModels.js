@@ -5,9 +5,17 @@ import initProtocolsModels from "./Protocols/_initAssociations.js";
 import initSocialPassportModels from "./SocialPassport/_initAssociations.js";
 
 export default () => {
-  initAuthModels();
-  initGroupModels();
-  initProfileModels();
-  initProtocolsModels();
-  initSocialPassportModels();
+  const authModels = initAuthModels();
+  const groupModels = initGroupModels();
+  const profileModels = initProfileModels();
+  const protocolsModels = initProtocolsModels();
+  const socialPassportModels = initSocialPassportModels();
+
+  return {
+    ...authModels,
+    ...groupModels,
+    ...profileModels,
+    ...protocolsModels,
+    ...socialPassportModels,
+  };
 };

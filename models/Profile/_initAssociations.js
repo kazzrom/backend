@@ -6,8 +6,8 @@ import IndividualWork from "./IndividualWork.js";
 import PersonalData from "./PersonalData.js";
 
 export default () => {
-  initCharacteristicModels();
-  initFamilyModels();
+  const characteristicModels = initCharacteristicModels();
+  const familyModels = initFamilyModels();
 
   Student.hasOne(PersonalData, {
     foreignKey: "studentId",
@@ -20,4 +20,12 @@ export default () => {
     onDelete: "CASCADE",
   });
   IndividualWork.belongsTo(Student, { foreignKey: "studentId" });
+
+  return {
+    Student,
+    PersonalData,
+    IndividualWork,
+    ...characteristicModels,
+    ...familyModels,
+  };
 };

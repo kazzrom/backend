@@ -42,4 +42,14 @@ export default () => {
     onDelete: "CASCADE",
   });
   DisabledParent.belongsTo(Student, { foreignKey: "studentId" });
+
+  return {
+    Student,
+    ProblemFamily,
+    LowIncomeFamily,
+    StudentRegisteredOPPN,
+    UnemployedParent,
+    StudentsWithChronicDiseases,
+    DisabledParent,
+  };
 };

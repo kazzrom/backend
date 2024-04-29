@@ -25,4 +25,6 @@ export default () => {
     onDelete: "CASCADE",
   });
   StudentPersonality.belongsTo(Student, { foreignKey: "studentId" });
+
+  return { Student, Hobby, Inclination, StudentAttitudes, StudentPersonality };
 };
