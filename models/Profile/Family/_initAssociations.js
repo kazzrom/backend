@@ -1,5 +1,6 @@
 import Student from "../../Group/Student.js";
 import FamilyMember from "./FamilyMember.js";
+import MemberPersonalData from "./MemberPersonalData.js";
 
 export default () => {
   Student.belongsToMany(FamilyMember, {
@@ -14,4 +15,11 @@ export default () => {
     foreignKey: "relativeId",
     timestamps: false,
   });
+
+  FamilyMember.hasOne(MemberPersonalData, {
+    foreignKey: "relativeId",
+    onDelete: "CASCADE",
+  });
+
+  MemberPersonalData.belongsTo(FamilyMember, { foreignKey: "relativeId" });
 };

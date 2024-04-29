@@ -25,8 +25,6 @@ const FamilyMember = sequelize.define(
         key: "name",
       },
     },
-    workPlace: DataTypes.STRING,
-    post: DataTypes.STRING,
   },
   {
     timestamps: false,
