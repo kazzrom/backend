@@ -8,10 +8,15 @@ const StudentAttitudes = sequelize.define(
   {
     //   Отношение к учебе
     attitudeToStudy: DataTypes.TEXT,
+    
     // Отношение к старшим
     attitudeToElders: DataTypes.TEXT,
+
     // Отношение к неудачам
     attitudeToFailures: DataTypes.TEXT,
+
+    // Взаимоотношения со сверстниками
+    relationshipWithPeers: DataTypes.STRING(100),
   },
   {
     timestamps: false,

@@ -38,6 +38,12 @@ await models.RelationName.bulkCreate([
   { name: "Брат" },
 ]);
 
+await models.InclinationName.bulkCreate([
+  { name: "К курению" },
+  { name: "К распитию спиртного" },
+  { name: "К бродяжничеству" },
+]);
+
 const student = await models.Student.create({
   surname: "Иванов",
   name: "Иван",

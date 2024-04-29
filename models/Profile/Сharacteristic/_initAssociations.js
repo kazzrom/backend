@@ -1,6 +1,7 @@
 import Student from "../../Group/Student.js";
 import Hobby from "./Hobby.js";
 import Inclination from "./Inclination.js";
+import InclinationName from "./InclinationName.js";
 import StudentAttitudes from "./StudentAttitudes.js";
 import StudentPersonality from "./StudentPersonality.js";
 
@@ -26,5 +27,12 @@ export default () => {
   });
   StudentPersonality.belongsTo(Student, { foreignKey: "studentId" });
 
-  return { Student, Hobby, Inclination, StudentAttitudes, StudentPersonality };
+  return {
+    Student,
+    Hobby,
+    Inclination,
+    InclinationName,
+    StudentAttitudes,
+    StudentPersonality,
+  };
 };

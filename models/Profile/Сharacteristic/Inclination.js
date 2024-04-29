@@ -5,7 +5,7 @@ import InclinationName from "./InclinationName.js";
 const Inclination = sequelize.define(
   "Inclination",
   {
-    inclinationName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       references: {
