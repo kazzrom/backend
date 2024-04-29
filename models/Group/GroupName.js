@@ -10,9 +10,7 @@ const GroupName = sequelize.define(
       primaryKey: true,
     },
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default GroupName;

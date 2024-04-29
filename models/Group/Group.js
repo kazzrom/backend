@@ -23,9 +23,7 @@ const Group = sequelize.define(
       },
     },
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default Group;

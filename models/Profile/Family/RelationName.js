@@ -6,13 +6,12 @@ const RelationName = sequelize.define(
   {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
       primaryKey: true,
+      unique: true,
+      allowNull: false,
     },
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default RelationName;

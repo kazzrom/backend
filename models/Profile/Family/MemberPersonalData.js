@@ -6,12 +6,14 @@ const MemberPersonalData = sequelize.define(
   {
     workPlace: DataTypes.STRING,
     post: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING(15),
+    phoneNumber: {
+      type: DataTypes.STRING(20),
+      unique: true,
+      allowNull: false,
+    },
     residentialAddress: DataTypes.STRING,
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default MemberPersonalData;

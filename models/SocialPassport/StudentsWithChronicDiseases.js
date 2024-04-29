@@ -10,9 +10,7 @@ const StudentsWithChronicDiseases = sequelize.define(
     },
     note: DataTypes.TEXT,
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default StudentsWithChronicDiseases;

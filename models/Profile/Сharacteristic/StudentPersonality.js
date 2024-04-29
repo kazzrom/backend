@@ -12,9 +12,7 @@ const StudentPersonality = sequelize.define(
     // Наличие правонарушений
     presenceOffenses: DataTypes.BOOLEAN,
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default StudentPersonality;

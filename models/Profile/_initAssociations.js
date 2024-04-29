@@ -5,7 +5,6 @@ import Student from "../Group/Student.js";
 import IndividualWork from "./IndividualWork.js";
 import PersonalData from "./PersonalData.js";
 
-// TODO:
 export default () => {
   initCharacteristicModels();
   initFamilyModels();

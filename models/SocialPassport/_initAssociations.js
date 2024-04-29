@@ -7,21 +7,39 @@ import StudentsWithChronicDiseases from "./StudentsWithChronicDiseases.js";
 import DisabledParent from "./DisabledParent.js";
 
 export default () => {
-  ProblemFamily.hasOne(Student, { foreignKey: "studentId" });
-  Student.belongsTo(ProblemFamily, { foreignKey: "studentId" });
+  Student.hasOne(ProblemFamily, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
+  ProblemFamily.belongsTo(Student, { foreignKey: "studentId" });
 
-  LowIncomeFamily.hasOne(Student, { foreignKey: "studentId" });
-  Student.belongsTo(LowIncomeFamily, { foreignKey: "studentId" });
+  Student.hasOne(LowIncomeFamily, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
+  LowIncomeFamily.belongsTo(Student, { foreignKey: "studentId" });
 
-  StudentRegisteredOPPN.hasOne(Student, { foreignKey: "studentId" });
-  Student.belongsTo(StudentRegisteredOPPN, { foreignKey: "studentId" });
+  Student.hasOne(StudentRegisteredOPPN, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
+  StudentRegisteredOPPN.belongsTo(Student, { foreignKey: "studentId" });
 
-  UnemployedParent.hasMany(Student, { foreignKey: "studentId" });
-  Student.belongsTo(UnemployedParent, { foreignKey: "studentId" });
+  Student.hasMany(UnemployedParent, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
+  UnemployedParent.belongsTo(Student, { foreignKey: "studentId" });
 
-  StudentsWithChronicDiseases.hasMany(Student, { foreignKey: "studentId" });
-  Student.belongsTo(StudentsWithChronicDiseases, { foreignKey: "studentId" });
+  Student.hasMany(StudentsWithChronicDiseases, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
+  StudentsWithChronicDiseases.belongsTo(Student, { foreignKey: "studentId" });
 
-  DisabledParent.hasMany(Student, { foreignKey: "studentId" });
-  Student.belongsTo(DisabledParent, { foreignKey: "studentId" });
+  Student.hasMany(DisabledParent, {
+    foreignKey: "studentId",
+    onDelete: "CASCADE",
+  });
+  DisabledParent.belongsTo(Student, { foreignKey: "studentId" });
 };

@@ -10,9 +10,7 @@ const ProblemFamily = sequelize.define(
     },
     note: DataTypes.TEXT,
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default ProblemFamily;

@@ -26,9 +26,7 @@ const FamilyMember = sequelize.define(
       },
     },
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default FamilyMember;

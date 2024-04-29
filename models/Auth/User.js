@@ -6,6 +6,7 @@ const User = sequelize.define(
   {
     login: {
       type: DataTypes.STRING(50),
+      unique: true,
       allowNull: false,
     },
     password: {
@@ -13,9 +14,7 @@ const User = sequelize.define(
       allowNull: false,
     },
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default User;

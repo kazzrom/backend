@@ -5,10 +5,9 @@ import GroupMeeting from "./GroupMeeting.js";
 import Homeroom from "./Homeroom.js";
 
 export default () => {
-  Group.hasMany(ParentMeeting, { foreignKey: "groupId" });
+  Group.hasMany(ParentMeeting, { foreignKey: "groupId", onDelete: "CASCADE" });
   ParentMeeting.belongsTo(Group, {
     foreignKey: "groupId",
-    onDelete: "CASCADE",
   });
 
   Parent.belongsToMany(ParentMeeting, {

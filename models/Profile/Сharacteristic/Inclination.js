@@ -14,9 +14,7 @@ const Inclination = sequelize.define(
       },
     },
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default Inclination;

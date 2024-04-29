@@ -6,8 +6,9 @@ const InclinationName = sequelize.define(
   {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
       primaryKey: true,
+      unique: true,
+      allowNull: false,
     },
   },
   {

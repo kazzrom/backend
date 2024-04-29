@@ -17,9 +17,7 @@ const IndividualWork = sequelize.define(
       allowNull: false,
     },
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default IndividualWork;

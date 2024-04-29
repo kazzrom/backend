@@ -6,20 +6,18 @@ export default () => {
   Student.belongsToMany(FamilyMember, {
     through: "Familyties",
     foreignKey: "studentId",
-    timestamps: false,
     onDelete: "CASCADE",
+    timestamps: false,
   });
 
   FamilyMember.belongsToMany(Student, {
     through: "Familyties",
     foreignKey: "relativeId",
-    timestamps: false,
   });
 
   FamilyMember.hasOne(MemberPersonalData, {
     foreignKey: "relativeId",
     onDelete: "CASCADE",
   });
-
-  MemberPersonalData.belongsTo(FamilyMember, { foreignKey: "relativeId" });
+  MemberPersonalData.belongsTo(FamilyMember, { foreignKey: "familyMemberId" });
 };

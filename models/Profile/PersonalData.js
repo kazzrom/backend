@@ -10,10 +10,12 @@ const PersonalData = sequelize.define(
     },
     reportCardNumber: {
       type: DataTypes.INTEGER,
+      unique: true,
       allowNull: false,
     },
     phoneNumber: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(20),
+      unique: true,
       allowNull: false,
     },
     residentialAddress: {
@@ -21,11 +23,13 @@ const PersonalData = sequelize.define(
       allowNull: false,
     },
     SNILS: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(20),
+      unique: true,
       allowNull: false,
     },
     medicalPolicy: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
+      unique: true,
       allowNull: false,
     },
   },

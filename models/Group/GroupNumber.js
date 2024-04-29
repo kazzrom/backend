@@ -10,9 +10,7 @@ const GroupNumber = sequelize.define(
       primaryKey: true,
     },
   },
-  {
-    timestamps: false,
-  }
+  { timestamps: false }
 );
 
 export default GroupNumber;
