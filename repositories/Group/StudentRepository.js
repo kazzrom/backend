@@ -28,32 +28,18 @@ export default class StudentRepository {
     return student;
   }
 
-  static async createStudent(data) {
-    const { surname, name, patronymic, sex, groupId } = data;
-    const student = await Student.create({
-      surname,
-      name,
-      patronymic,
-      sex,
-      groupId,
-    });
-
-    const { PersonalDatum } = data;
-    const personalData = await PersonalData.create(PersonalDatum);
-
+  static async createStudent({ student, personalData }) {
+    const student = await Student.create(student);
+    const personalData = await PersonalData.create(personalData);
     await student.setPersonalDatum(personalData);
   }
 
-  static async updateStudent(id, data) {
-    const student = await Student.findByPk(id, {
-      include: [PersonalData],
+  static async updateStudent({ id, student, personalData }) {
+    await Student.update(student, { where: { id } });
+
+    await PersonalData.update(personalData, {
+      where: { studentId: id },
     });
-
-    const { surname, name, patronymic, sex } = data;
-    await student.update({ surname, name, patronymic, sex });
-
-    const { PersonalDatum } = data;
-    await student.PersonalDatum.update(PersonalDatum);
   }
 
   static async deleteStudent(id) {
