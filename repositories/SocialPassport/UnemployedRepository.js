@@ -4,18 +4,14 @@ const { Student, UnemployedParent } = initModels();
 
 export default class UnemployedRepository {
   static async getRecords(groupId) {
-    const students = await Student.findAll({
-      where: { groupId },
+    const unemployedParents = await UnemployedParent.findAll({
+      where: { "$Student.groupId$": groupId },
       include: [UnemployedParent],
     });
 
-    if (!students) {
+    if (!unemployedParents) {
       return null;
     }
-
-    const unemployedParents = students.map(
-      (student) => student.UnemployedParents
-    );
 
     return unemployedParents;
   }

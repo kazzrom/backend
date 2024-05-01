@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/connectingDB.js";
 
-const RegisteredOPPNFamily = sequelize.define(
-  "RegisteredOPPNFamily",
+const StudentRegisteredOPPN = sequelize.define(
+  "StudentRegisteredOPPN",
   {
     reason: {
       type: DataTypes.STRING,
@@ -13,4 +13,4 @@ const RegisteredOPPNFamily = sequelize.define(
   { timestamps: false }
 );
 
-export default RegisteredOPPNFamily;
+export default StudentRegisteredOPPN;

@@ -4,18 +4,14 @@ const { Student, StudentRegisteredOPPN } = initModels();
 
 export default class RegisteredOPPNRepository {
   static async getRecords(groupId) {
-    const students = await Student.findAll({
-      where: { groupId },
-      include: [StudentRegisteredOPPN],
+    const registeredOPPNs = await StudentRegisteredOPPN.findAll({
+      where: { "$Student.groupId$": groupId },
+      include: [Student],
     });
 
-    if (!students) {
+    if (!registeredOPPNs) {
       return null;
     }
-
-    const registeredOPPNs = students.map(
-      (student) => student.StudentRegisteredOPPN
-    );
 
     return registeredOPPNs;
   }

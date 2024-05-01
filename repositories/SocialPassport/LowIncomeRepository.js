@@ -4,18 +4,14 @@ const { Student, LowIncomeFamily } = initModels();
 
 export default class LowIncomeRepository {
   static async getRecords(groupId) {
-    const students = await Student.findAll({
-      where: { groupId },
-      include: [LowIncomeFamily],
+    const lowIncomeFamilies = await LowIncomeFamily.findAll({
+      where: { "$Student.groupId$": groupId },
+      include: [Student],
     });
 
-    if (!students) {
+    if (!lowIncomeFamilies) {
       return null;
     }
-
-    const lowIncomeFamilies = students.map(
-      (student) => student.LowIncomeFamily
-    );
 
     return lowIncomeFamilies;
   }

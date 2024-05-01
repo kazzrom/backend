@@ -4,19 +4,14 @@ const { Student, StudentsWithChronicDiseases } = initModels();
 
 export default class ChronicDiseasesRepository {
   static async getRecords(groupId) {
-    const students = await Student.findAll({
-      where: { groupId },
-      include: [StudentsWithChronicDiseases],
+    const chronicDiseases = await StudentsWithChronicDiseases.findAll({
+      where: { "$Student.groupId$": groupId },
+      include: [Student],
     });
 
-    if (!students) {
+    if (!chronicDiseases) {
       return null;
     }
-
-    // TODO: возможно, тут некорректно сделана выборка и преобразование массива, хы
-    const chronicDiseases = students.map(
-      (student) => student.StudentsWithChronicDiseases
-    );
 
     return chronicDiseases;
   }

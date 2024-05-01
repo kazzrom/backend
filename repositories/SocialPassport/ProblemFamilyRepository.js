@@ -4,16 +4,14 @@ const { Student, ProblemFamily } = initModels();
 
 export default class ProblemFamilyRepository {
   static async getRecords(groupId) {
-    const students = await Student.findAll({
-      where: { groupId },
-      include: [ProblemFamily],
+    const problemFamilies = await ProblemFamily.findAll({
+      where: { "$Student.groupId$": groupId },
+      include: [Student],
     });
 
-    if (!students) {
+    if (!problemFamilies) {
       return null;
     }
-
-    const problemFamilies = students.map((student) => student.ProblemFamily);
 
     return problemFamilies;
   }
