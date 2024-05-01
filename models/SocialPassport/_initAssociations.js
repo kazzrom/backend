@@ -1,4 +1,5 @@
 import Student from "../Group/Student.js";
+import Parent from "../Profile/Family/FamilyMember.js";
 import ProblemFamily from "./ProblemFamily.js";
 import LowIncomeFamily from "./LowIncomeFamily.js";
 import StudentRegisteredOPPN from "./StudentRegisteredOPPN.js";
@@ -31,6 +32,12 @@ export default () => {
   });
   UnemployedParent.belongsTo(Student, { foreignKey: "studentId" });
 
+  Parent.hasMany(UnemployedParent, {
+    foreignKey: "parentId",
+    onDelete: "CASCADE",
+  });
+  UnemployedParent.belongsTo(Parent, { foreignKey: "parentId" });
+
   Student.hasMany(StudentsWithChronicDiseases, {
     foreignKey: "studentId",
     onDelete: "CASCADE",
@@ -42,6 +49,12 @@ export default () => {
     onDelete: "CASCADE",
   });
   DisabledParent.belongsTo(Student, { foreignKey: "studentId" });
+
+  Parent.hasMany(DisabledParent, {
+    foreignKey: "parentId",
+    onDelete: "CASCADE",
+  });
+  DisabledParent.belongsTo(Parent, { foreignKey: "parentId" });
 
   return {
     Student,
