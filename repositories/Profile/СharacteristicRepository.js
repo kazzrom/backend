@@ -18,7 +18,7 @@ export default class СharacteristicRepository {
     return student;
   }
 
-  static async updateStudentAttitudesByStudentId(studentId, data) {
+  static async updateStudentAttitudesByStudentId({ studentId, data }) {
     const student = await Student.findOne({
       where: { id: studentId },
       include: StudentAttitudes,

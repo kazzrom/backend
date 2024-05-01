@@ -11,10 +11,10 @@ export default class CharacteristicService {
   }
 
   static async updateStudentAttitudesByStudentId({ studentId, data }) {
-    await CharacteristicRepository.updateStudentAttitudesByStudentId(
+    await CharacteristicRepository.updateStudentAttitudesByStudentId({
       studentId,
-      data
-    );
+      data,
+    });
   }
 
   static async updateStudentPersonalityByStudentId({ studentId, data }) {

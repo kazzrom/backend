@@ -24,8 +24,8 @@ export default class StudentService {
     return response;
   }
 
-  static async updateStudent(data) {
-    const { id, surname, name, patronymic, sex, PersonalDatum } = data;
+  static async updateStudent({ id, data }) {
+    const { surname, name, patronymic, sex, PersonalDatum } = data;
 
     await StudentRepository.updateStudent({
       id,

@@ -24,8 +24,8 @@ export default class FamilyService {
     });
   }
 
-  static async updateFamilyMember(data) {
-    const { id, surname, name, patronymic, relation } = data;
+  static async updateFamilyMember({ id, data }) {
+    const { surname, name, patronymic, relation } = data;
 
     await FamilyRepository.updateFamilyMember({
       id,

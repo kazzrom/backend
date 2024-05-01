@@ -12,16 +12,10 @@ export default class IndividualWorkService {
     await IndividualWorkRepository.createIndividualWork(data);
   }
 
-  static async updateIndividualWork(data) {
-    const { id, workDate, participant, workContent } = data;
-
+  static async updateIndividualWork({ id, data }) {
     await IndividualWorkRepository.updateIndividualWork({
       id,
-      individualWork: {
-        workDate,
-        participant,
-        workContent,
-      },
+      data,
     });
   }
 

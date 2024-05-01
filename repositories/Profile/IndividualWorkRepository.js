@@ -19,8 +19,8 @@ export default class IndividualWorkRepository {
     await IndividualWork.create(data);
   }
 
-  static async updateIndividualWork({ id, individualWork }) {
-    await IndividualWork.update(individualWork, { where: { id } });
+  static async updateIndividualWork({ id, data }) {
+    await IndividualWork.update(data, { where: { id } });
   }
 
   static async deleteIndividualWork(id) {
