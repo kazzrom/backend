@@ -18,7 +18,8 @@ export default class СharacteristicRepository {
     return student;
   }
 
-  static async createStudentCharacteristic(studentId) {
+  static async createStudentCharacteristic(data) {
+    const { studentId } = data;
     const student = await Student.findOne({
       where: { id: studentId },
       include: [Hobby, Inclination, StudentAttitudes, StudentPersonality],

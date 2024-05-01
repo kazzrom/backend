@@ -18,7 +18,8 @@ export default class FamilyRepository {
     return currentStudent.FamilyMembers;
   }
 
-  static async createFamilyMember(studentId, data) {
+  static async createFamilyMember(data) {
+    const { studentId } = data;
     const currentStudent = await Student.findByPk(studentId, {
       include: {
         model: FamilyMember,

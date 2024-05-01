@@ -1,6 +1,6 @@
 import initModels from "../../models/initModels.js";
 
-const { Student, IndividualWork } = initModels();
+const { IndividualWork } = initModels();
 
 export default class IndividualWorkRepository {
   static async getAllIndividualWorkByStudentId(studentId) {
@@ -15,11 +15,8 @@ export default class IndividualWorkRepository {
     return individualWorks;
   }
 
-  static async createIndividualWork(studentId, data) {
-    await IndividualWork.create({
-      ...data,
-      studentId,
-    });
+  static async createIndividualWork(data) {
+    await IndividualWork.create(data);
   }
 
   static async updateIndividualWork(id, data) {
