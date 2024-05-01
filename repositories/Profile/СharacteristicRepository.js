@@ -18,20 +18,6 @@ export default class СharacteristicRepository {
     return student;
   }
 
-  static async createStudentCharacteristic(data) {
-    const { studentId } = data;
-    const student = await Student.findOne({
-      where: { id: studentId },
-      include: [StudentAttitudes, StudentPersonality],
-    });
-
-    const studentAttitudes = await StudentAttitudes.create();
-    const studentPersonality = await StudentPersonality.create();
-
-    await student.setStudentAttitude(studentAttitudes);
-    await student.setStudentPersonality(studentPersonality);
-  }
-
   static async updateStudentAttitudesByStudentId(studentId, data) {
     const student = await Student.findOne({
       where: { id: studentId },
@@ -40,49 +26,46 @@ export default class СharacteristicRepository {
     await student.StudentAttitude.update(data);
   }
 
-  static async updateStudentPersonalityByStudentId(studentId, data) {
+  static async updateStudentPersonalityByStudentId({
+    studentId,
+    studentPersonality,
+    hobbies,
+    inclinations,
+  }) {
     const student = await Student.findOne({
       where: { id: studentId },
       include: [StudentPersonality, Hobby, Inclination],
     });
 
-    const { positiveSides, negativeSides, presenceOffenses } = data;
-
-    await student.StudentPersonality.update({
-      positiveSides,
-      negativeSides,
-      presenceOffenses,
-    });
+    await student.StudentPersonality.update(studentPersonality);
 
     // Обновление хобби
-    const { Hobbies } = data;
     const studentHobbies = student.Hobbies.map((hobby) => ({
       name: hobby.name,
     }));
 
-    const xorHobbies = _.xorBy(Hobbies, studentHobbies, "name");
+    const xorHobbies = _.xorBy(hobbies, studentHobbies, "name");
 
-    const newHobbies = Hobbies.filter((hobby) => xorHobbies.includes(hobby));
+    const newHobbies = hobbies.filter((hobby) => xorHobbies.includes(hobby));
     const oldHobbies = studentHobbies.filter((hobby) =>
       xorHobbies.includes(hobby)
     );
 
-    const hobbies = await Hobby.bulkCreate(newHobbies);
-    await student.addHobbies(hobbies);
+    const totalHobbies = await Hobby.bulkCreate(newHobbies);
+    await student.addHobbies(totalHobbies);
 
     oldHobbies.forEach(async (hobby) => {
       await Hobby.destroy({ where: { studentId, name: hobby.name } });
     });
 
     // Обновление склонностей
-    const { Inclinations } = data;
     const studentInclinations = student.Inclinations.map((inclination) => ({
       name: inclination.name,
     }));
 
-    const xorInclinations = _.xorBy(Inclinations, studentInclinations, "name");
+    const xorInclinations = _.xorBy(inclinations, studentInclinations, "name");
 
-    const newInclinations = Inclinations.filter((inclination) =>
+    const newInclinations = inclinations.filter((inclination) =>
       xorInclinations.includes(inclination)
     );
 
@@ -90,8 +73,8 @@ export default class СharacteristicRepository {
       xorInclinations.includes(inclination)
     );
 
-    const inclinations = await Inclination.bulkCreate(newInclinations);
-    await student.addInclinations(inclinations);
+    const totalInclinations = await Inclination.bulkCreate(newInclinations);
+    await student.addInclinations(totalInclinations);
 
     oldInclinations.forEach(async (inclination) => {
       await Inclination.destroy({

@@ -1,6 +1,7 @@
 import initModels from "../../models/initModels.js";
 
-const { Student, PersonalData } = initModels();
+const { Student, PersonalData, StudentAttitudes, StudentPersonality } =
+  initModels();
 
 export default class StudentRepository {
   static async getAllStudentByGroupId(groupId) {
@@ -29,9 +30,16 @@ export default class StudentRepository {
   }
 
   static async createStudent({ student, personalData }) {
-    const student = await Student.create(student);
+    const createdStudent = await Student.create(student);
+
     const personalData = await PersonalData.create(personalData);
-    await student.setPersonalDatum(personalData);
+    await createdStudent.setPersonalDatum(personalData);
+
+    const studentAttitudes = await StudentAttitudes.create();
+    const studentPersonality = await StudentPersonality.create();
+
+    await createdStudent.setStudentAttitude(studentAttitudes);
+    await createdStudent.setStudentPersonality(studentPersonality);
   }
 
   static async updateStudent({ id, student, personalData }) {
