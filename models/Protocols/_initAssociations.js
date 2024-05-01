@@ -20,6 +20,7 @@ export default () => {
   ParentMeeting.belongsToMany(Parent, {
     through: "AttendanceParentMeetings",
     foreignKey: "parentMeetingId",
+    as: "Parents",
     timestamps: false,
     onDelete: "CASCADE",
   });
