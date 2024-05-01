@@ -1,4 +1,4 @@
-import initModels from "../../models/initModels";
+import initModels from "../../models/initModels.js";
 
 const { GroupMeeting } = initModels();
 

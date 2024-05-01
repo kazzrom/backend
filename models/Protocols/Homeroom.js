@@ -8,7 +8,7 @@ const Homeroom = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    meetingTime: {
+    meetingDate: {
       type: DataTypes.DATE,
       allowNull: false,
     },

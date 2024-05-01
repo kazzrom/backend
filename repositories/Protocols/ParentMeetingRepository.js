@@ -40,11 +40,25 @@ export default class ParentMeetingRepository {
       },
     });
 
-    await protocol.addParents(parents);
+    await protocol.setParents(parents);
   }
 
   static async updateProtocol(id, data) {
-    await ParentMeeting.update(data, { where: { id } });
+    const protocol = await ParentMeeting.findByPk(id);
+
+    const { theme, meetingDate, content } = data;
+    protocol.update({ theme, meetingDate, content });
+
+    const { parentIds } = data;
+    const parents = await Parent.findAll({
+      where: {
+        id: {
+          [Op.or]: parentIds,
+        },
+      },
+    });
+
+    await protocol.setParents(parents);
   }
 
   static async deleteProtocol(id) {
