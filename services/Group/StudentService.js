@@ -20,8 +20,6 @@ export default class StudentService {
       student: { surname, name, patronymic, sex, groupId },
       personalData: PersonalDatum,
     });
-
-    return response;
   }
 
   static async updateStudent({ id, data }) {

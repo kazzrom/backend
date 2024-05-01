@@ -32,8 +32,8 @@ export default class StudentRepository {
   static async createStudent({ student, personalData }) {
     const createdStudent = await Student.create(student);
 
-    const personalData = await PersonalData.create(personalData);
-    await createdStudent.setPersonalDatum(personalData);
+    const createdPersonalData = await PersonalData.create(personalData);
+    await createdStudent.setPersonalDatum(createdPersonalData);
 
     const studentAttitudes = await StudentAttitudes.create();
     const studentPersonality = await StudentPersonality.create();
