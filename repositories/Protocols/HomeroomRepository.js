@@ -17,7 +17,7 @@ export default class HomeroomRepository {
     await Homeroom.create(data);
   }
 
-  static async updateProtocol(id, data) {
+  static async updateProtocol({ id, data }) {
     await Homeroom.update(data, { where: { id } });
   }
 

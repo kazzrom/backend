@@ -20,17 +20,8 @@ export default class ParentMeetingRepository {
     return protocols;
   }
 
-  static async createProtocol(data) {
-    const { theme, meetingDate, content, groupId } = data;
-
-    const protocol = await ParentMeeting.create({
-      theme,
-      meetingDate,
-      content,
-      groupId,
-    });
-
-    const { parentIds } = data;
+  static async createProtocol({ protocol, parentIds }) {
+    const createdProtocol = await ParentMeeting.create(protocol);
 
     const parents = await Parent.findAll({
       where: {
@@ -40,16 +31,14 @@ export default class ParentMeetingRepository {
       },
     });
 
-    await protocol.setParents(parents);
+    await createdProtocol.setParents(parents);
   }
 
-  static async updateProtocol(id, data) {
+  static async updateProtocol({ id, updatedProtocol, parentIds }) {
     const protocol = await ParentMeeting.findByPk(id);
 
-    const { theme, meetingDate, content } = data;
-    protocol.update({ theme, meetingDate, content });
+    protocol.update(updatedProtocol);
 
-    const { parentIds } = data;
     const parents = await Parent.findAll({
       where: {
         id: {

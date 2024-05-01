@@ -17,7 +17,7 @@ export default class GroupMeetingRepository {
     await GroupMeeting.create(data);
   }
 
-  static async updateProtocol(id, data) {
+  static async updateProtocol({id, data}) {
     await GroupMeeting.update(data, { where: { id } });
   }
 
