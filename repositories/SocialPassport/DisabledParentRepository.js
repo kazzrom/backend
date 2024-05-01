@@ -1,12 +1,12 @@
 import initModels from "../../models/initModels.js";
 
-const { Student, DisabledParent, FamilyMember } = initModels();
+const { Student, DisabledParent, FamilyMember: Parent } = initModels();
 
 export default class DisabledParentRepository {
   static async getRecords(groupId) {
     const disabledParents = await DisabledParent.findAll({
       where: { "$Student.groupId$": groupId },
-      include: [Student, FamilyMember],
+      include: [Student, { model: Parent, as: "Parent" }],
     });
 
     if (!disabledParents) {

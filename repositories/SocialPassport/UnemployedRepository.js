@@ -1,12 +1,12 @@
 import initModels from "../../models/initModels.js";
 
-const { Student, UnemployedParent } = initModels();
+const { Student, UnemployedParent, FamilyMember: Parent } = initModels();
 
 export default class UnemployedRepository {
   static async getRecords(groupId) {
     const unemployedParents = await UnemployedParent.findAll({
       where: { "$Student.groupId$": groupId },
-      include: [UnemployedParent],
+      include: [Student, { model: Parent, as: "Parent" }],
     });
 
     if (!unemployedParents) {
