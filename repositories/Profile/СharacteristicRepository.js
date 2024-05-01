@@ -5,7 +5,7 @@ const { Student, Hobby, Inclination, StudentAttitudes, StudentPersonality } =
   initModels();
 
 export default class СharacteristicRepository {
-  static async getStudentCharacteristic(studentId) {
+  static async getStudentCharacteristicByStudentId(studentId) {
     const student = Student.findOne({
       where: { id: studentId },
       include: [Hobby, Inclination, StudentAttitudes, StudentPersonality],
@@ -22,7 +22,7 @@ export default class СharacteristicRepository {
     const { studentId } = data;
     const student = await Student.findOne({
       where: { id: studentId },
-      include: [Hobby, Inclination, StudentAttitudes, StudentPersonality],
+      include: [StudentAttitudes, StudentPersonality],
     });
 
     const studentAttitudes = await StudentAttitudes.create();
@@ -32,7 +32,7 @@ export default class СharacteristicRepository {
     await student.setStudentPersonality(studentPersonality);
   }
 
-  static async updateStudentAttitudes(studentId, data) {
+  static async updateStudentAttitudesByStudentId(studentId, data) {
     const student = await Student.findOne({
       where: { id: studentId },
       include: StudentAttitudes,
@@ -40,7 +40,7 @@ export default class СharacteristicRepository {
     await student.StudentAttitude.update(data);
   }
 
-  static async updateStudentPersonality(studentId, data) {
+  static async updateStudentPersonalityByStudentId(studentId, data) {
     const student = await Student.findOne({
       where: { id: studentId },
       include: [StudentPersonality, Hobby, Inclination],

@@ -4,7 +4,7 @@ import initModels from "../../models/initModels.js";
 const { ParentMeeting, FamilyMember: Parent } = initModels();
 
 export default class ParentMeetingRepository {
-  static async getProtocols(groupId) {
+  static async getProtocolsByGroupId(groupId) {
     const protocols = await ParentMeeting.findAll({
       where: { groupId },
       include: {

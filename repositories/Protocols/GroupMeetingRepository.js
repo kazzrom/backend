@@ -3,7 +3,7 @@ import initModels from "../../models/initModels.js";
 const { GroupMeeting } = initModels();
 
 export default class GroupMeetingRepository {
-  static async getProtocols(groupId) {
+  static async getProtocolsByGroupId(groupId) {
     const protocols = await GroupMeeting.findAll({ where: { groupId } });
 
     if (!protocols) {

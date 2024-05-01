@@ -3,7 +3,7 @@ import initModels from "../../models/initModels.js";
 const { Student, FamilyMember, MemberPersonalData } = initModels();
 
 export default class FamilyRepository {
-  static async getAllFamilyMembers(studentId) {
+  static async getAllFamilyMembersByStudentId(studentId) {
     const currentStudent = await Student.findByPk(studentId, {
       include: {
         model: FamilyMember,

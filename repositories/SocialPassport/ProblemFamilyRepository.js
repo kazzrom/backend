@@ -3,7 +3,7 @@ import initModels from "../../models/initModels.js";
 const { Student, ProblemFamily } = initModels();
 
 export default class ProblemFamilyRepository {
-  static async getRecords(groupId) {
+  static async getRecordsByGroupId(groupId) {
     const problemFamilies = await ProblemFamily.findAll({
       where: { "$Student.groupId$": groupId },
       include: [Student],

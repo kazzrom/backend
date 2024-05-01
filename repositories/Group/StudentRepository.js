@@ -3,7 +3,7 @@ import initModels from "../../models/initModels.js";
 const { Student, PersonalData } = initModels();
 
 export default class StudentRepository {
-  static async getAllStudent(groupId) {
+  static async getAllStudentByGroupId(groupId) {
     const students = await Student.findAll({
       where: { groupId },
       include: [PersonalData],

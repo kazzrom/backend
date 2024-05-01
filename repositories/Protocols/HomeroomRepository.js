@@ -3,7 +3,7 @@ import initModels from "../../models/initModels.js";
 const { Homeroom } = initModels();
 
 export default class HomeroomRepository {
-  static async getProtocols(groupId) {
+  static async getProtocolsByGroupId(groupId) {
     const protocols = await Homeroom.findAll({ where: { groupId } });
 
     if (!protocols) {

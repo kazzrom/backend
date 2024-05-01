@@ -3,7 +3,7 @@ import initModels from "../../models/initModels.js";
 const { Student, StudentRegisteredOPPN } = initModels();
 
 export default class RegisteredOPPNRepository {
-  static async getRecords(groupId) {
+  static async getRecordsByGroupId(groupId) {
     const registeredOPPNs = await StudentRegisteredOPPN.findAll({
       where: { "$Student.groupId$": groupId },
       include: [Student],
