@@ -18,8 +18,11 @@ export default class FamilyRepository {
     return currentStudent.FamilyMembers;
   }
 
-  static async createFamilyMember(data) {
-    const { studentId } = data;
+  static async createFamilyMember({
+    studentId,
+    familyMember,
+    memberPersonalData,
+  }) {
     const currentStudent = await Student.findByPk(studentId, {
       include: {
         model: FamilyMember,
@@ -27,32 +30,21 @@ export default class FamilyRepository {
       },
     });
 
-    const { surname, name, patronymic, relation } = data;
-    const familyMember = await FamilyMember.create({
-      surname,
-      name,
-      patronymic,
-      relation,
-    });
+    const createdFamilyMember = await FamilyMember.create(familyMember);
 
-    const { MemberPersonalDatum } = data;
-    const personalData = await MemberPersonalData.create(MemberPersonalDatum);
+    const personalData = await MemberPersonalData.create(memberPersonalData);
+    await createdFamilyMember.setMemberPersonalDatum(personalData);
 
-    await familyMember.setMemberPersonalDatum(personalData);
-
-    await currentStudent.addFamilyMember(familyMember);
+    await currentStudent.addFamilyMember(createdFamilyMember);
   }
 
-  static async updateFamilyMember(id, data) {
-    const familyMember = await FamilyMember.findByPk(id, {
+  static async updateFamilyMember({ id, familyMember, memberPersonalData }) {
+    const updatedFamilyMember = await FamilyMember.findByPk(id, {
       include: [MemberPersonalData],
     });
 
-    const { surname, name, patronymic, relation } = data;
-    await familyMember.update({ surname, name, patronymic, relation });
-
-    const { MemberPersonalDatum } = data;
-    await familyMember.MemberPersonalDatum.update(MemberPersonalDatum);
+    await updatedFamilyMember.update(familyMember);
+    await updatedFamilyMember.MemberPersonalDatum.update(memberPersonalData);
   }
 
   static async deleteFamilyMember(id) {
