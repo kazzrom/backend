@@ -1,7 +1,7 @@
 import { Router } from "express";
-import ParentMeetingRouter from "./ParentMeetingRouter";
-import GroupMettingRouter from "./GroupMettingRouter";
-import HomeroomRouter from "./HomeroomRouter";
+import ParentMeetingRouter from "./ParentMeetingRouter.js";
+import GroupMettingRouter from "./GroupMettingRouter.js";
+import HomeroomRouter from "./HomeroomRouter.js";
 
 const protocolRouter = Router();
 

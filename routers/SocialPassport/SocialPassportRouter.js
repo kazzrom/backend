@@ -7,7 +7,7 @@ import OrphansRouter from "./OrphansRouter.js";
 import ProblemFamilyRouter from "./ProblemFamilyRouter.js";
 import RegisteredOPPNRouter from "./RegisteredOPPNRouter.js";
 import UnderWardshipRouter from "./UnderWardshipRouter.js";
-import UnemployedParentRouter from "./UnemployedParentRouter.js";
+import UnemployedRouter from "./UnemployedRouter.js";
 
 const socialPassportRouter = Router();
 
@@ -19,6 +19,6 @@ socialPassportRouter.use("/orphans", OrphansRouter);
 socialPassportRouter.use("/problem-families", ProblemFamilyRouter);
 socialPassportRouter.use("/students-registered-oppn", RegisteredOPPNRouter);
 socialPassportRouter.use("/under-wardships", UnderWardshipRouter);
-socialPassportRouter.use("/unemployed-parents", UnemployedParentRouter);
+socialPassportRouter.use("/unemployed-parents", UnemployedRouter);
 
 export default socialPassportRouter;
