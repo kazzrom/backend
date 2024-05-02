@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import studentRouter from "./routers/Group/StudentRouter.js";
+import characteristicRouter from "./routers/Profile/CharacteristicRouter.js";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/students", studentRouter);
+app.use("/characteristics", characteristicRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running`);
