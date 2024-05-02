@@ -4,8 +4,9 @@ import initModels from "../../models/initModels.js";
 const { Student, FamilyMember, MemberPersonalData } = initModels();
 
 export default class OrphansRepository {
-  static async getRecords() {
+  static async getRecords(groupId) {
     const orphans = await Student.findAll({
+      where: { groupId },
       include: {
         model: FamilyMember,
         where: {

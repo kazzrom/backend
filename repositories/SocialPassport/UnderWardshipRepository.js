@@ -3,8 +3,9 @@ import initModels from "../../models/initModels.js";
 const { Student, FamilyMember, MemberPersonalData } = initModels();
 
 export default class UnderWardshipRepository {
-  static async getRecords() {
+  static async getRecords(groupId) {
     const underWardshipStudents = await Student.findAll({
+      where: { groupId },
       include: {
         model: FamilyMember,
         where: {

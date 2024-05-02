@@ -4,8 +4,9 @@ import initModels from "../../models/initModels.js";
 const { Student, FamilyMember, MemberPersonalData } = initModels();
 
 export default class IncompleteFamilyRepository {
-  static async getRecords() {
+  static async getRecords(groupId) {
     const familiesWithParents = await Student.findAll({
+      where: { groupId },
       include: {
         model: FamilyMember,
         where: {
