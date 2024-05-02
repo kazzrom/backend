@@ -5,6 +5,7 @@ import cors from "cors";
 import StudentRouter from "./routers/Group/StudentRouter.js";
 import ProfileRouter from "./routers/Profile/ProfileRouter.js";
 import ProtocolRouter from "./routers/Protocols/ProtocolRouter.js";
+import SocialPassportRouter from "./routers/SocialPassport/SocialPassportRouter.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use("/students", StudentRouter);
 app.use("/profile", ProfileRouter);
 app.use("/protocols", ProtocolRouter);
+app.use("/social-passport", SocialPassportRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running`);
