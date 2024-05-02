@@ -36,7 +36,7 @@ export default () => {
     foreignKey: "parentId",
     onDelete: "CASCADE",
   });
-  UnemployedParent.belongsTo(Parent, { foreignKey: "parentId", as: "Parent" });
+  UnemployedParent.belongsTo(Parent, { foreignKey: "parentId" });
 
   Student.hasMany(StudentsWithChronicDiseases, {
     foreignKey: "studentId",
@@ -54,7 +54,7 @@ export default () => {
     foreignKey: "parentId",
     onDelete: "CASCADE",
   });
-  DisabledParent.belongsTo(Parent, { foreignKey: "parentId", as: "Parent" });
+  DisabledParent.belongsTo(Parent, { foreignKey: "parentId" });
 
   return {
     Student,

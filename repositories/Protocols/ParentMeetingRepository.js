@@ -9,7 +9,6 @@ export default class ParentMeetingRepository {
       where: { groupId },
       include: {
         model: Parent,
-        as: "Parents",
       },
     });
 

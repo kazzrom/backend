@@ -6,7 +6,7 @@ export default class UnemployedRepository {
   static async getRecordsByGroupId(groupId) {
     const unemployedParents = await UnemployedParent.findAll({
       where: { "$Student.groupId$": groupId },
-      include: [Student, { model: Parent, as: "Parent" }],
+      include: [Student, { model: Parent }],
     });
 
     if (!unemployedParents) {

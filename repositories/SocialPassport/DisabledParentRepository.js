@@ -6,7 +6,7 @@ export default class DisabledParentRepository {
   static async getRecordsByGroupId(groupId) {
     const disabledParents = await DisabledParent.findAll({
       where: { "$Student.groupId$": groupId },
-      include: [Student, { model: Parent, as: "Parent" }],
+      include: [Student, { model: Parent }],
     });
 
     if (!disabledParents) {
