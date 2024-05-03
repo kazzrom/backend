@@ -1,0 +1,12 @@
+Todo:
+  type: object
+  properties:
+    id:
+      type: number
+      example: 1
+    title:
+      type: string
+      example: "Todo title"
+    completed:
+      type: boolean
+      example: false

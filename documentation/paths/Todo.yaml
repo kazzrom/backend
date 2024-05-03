@@ -1,0 +1,62 @@
+/todos:
+  get:
+    tags:
+      - todos
+    summary: Get all todos
+    description: Get all todos
+    responses:
+      200:
+        description: Success
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Todo"
+  post:
+    tags:
+      - todos
+    summary: Create a new todo
+    description: Create a new todo
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example: "Todo title"
+              completed:
+                type: boolean
+                example: false
+/todos/{id}:
+  put:
+    tags:
+      - todos
+    summary: Update a todo
+    description: Update a todo
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Todo"
+  delete:
+    tags:
+      - todos
+    summary: Delete a todo
+    description: Delete a todo
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
