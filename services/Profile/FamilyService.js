@@ -9,6 +9,12 @@ export default class FamilyService {
     return response;
   }
 
+  static async getFamilyMemberById(id) {
+    const familyMember = await FamilyRepository.getFamilyMemberById(id);
+
+    return familyMember;
+  }
+
   static async createFamilyMember(data) {
     const { surname, name, patronymic, relation } = data;
 

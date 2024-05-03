@@ -18,6 +18,18 @@ export default class FamilyRepository {
     return currentStudent.FamilyMembers;
   }
 
+  static async getFamilyMemberById(id) {
+    const familyMember = await FamilyMember.findByPk(id, {
+      include: [MemberPersonalData],
+    });
+
+    if (!familyMember) {
+      return null;
+    }
+
+    return familyMember;
+  }
+
   static async createFamilyMember({
     studentId,
     familyMember,

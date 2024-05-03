@@ -14,6 +14,17 @@ export default class FamilyController {
     }
   }
 
+  static async getFamilyMemberById(req, res) {
+    try {
+      const { id } = req.params;
+      const response = await FamilyService.getFamilyMemberById(id);
+      res.status(200).json(response);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
   static async createFamilyMember(req, res) {
     try {
       await FamilyService.createFamilyMember(req.body);

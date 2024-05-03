@@ -8,7 +8,9 @@ familyRouter.get(
   FamilyController.getAllFamilyMembersByStudentId
 );
 
-familyRouter.post("/family-members", FamilyController.createFamilyMember);
+familyRouter.post("/", FamilyController.createFamilyMember);
+
+familyRouter.get("/family-members/:id", FamilyController.getFamilyMemberById);
 
 familyRouter.put("/family-members/:id", FamilyController.updateFamilyMember);
 
