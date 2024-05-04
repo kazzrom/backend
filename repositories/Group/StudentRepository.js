@@ -1,7 +1,12 @@
 import initModels from "../../models/initModels.js";
 
-const { Student, PersonalData, StudentAttitudes, StudentPersonality } =
-  initModels();
+const {
+  Student,
+  PersonalData,
+  FamilyMember,
+  StudentAttitudes,
+  StudentPersonality,
+} = initModels();
 
 export default class StudentRepository {
   static async getAllStudentByGroupId(groupId) {
@@ -51,6 +56,12 @@ export default class StudentRepository {
   }
 
   static async deleteStudent(id) {
-    await Student.destroy({ where: { id } });
+    const student = await Student.findByPk(id, { include: [FamilyMember] });
+    student.FamilyMembers.forEach((familyMember) => {
+      familyMember.destroy({
+        force: true,
+      });
+    });
+    student.destroy({ force: true });
   }
 }

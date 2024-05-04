@@ -18,7 +18,7 @@ export default class FamilyService {
   static async createFamilyMember(data) {
     const { surname, name, patronymic, relation } = data;
 
-    await FamilyRepository.createFamilyMember({
+    const newFamilyMember = await FamilyRepository.createFamilyMember({
       studentId: data.studentId,
       familyMember: {
         surname,
@@ -28,6 +28,8 @@ export default class FamilyService {
       },
       memberPersonalData: data.MemberPersonalDatum,
     });
+
+    return newFamilyMember;
   }
 
   static async updateFamilyMember({ id, data }) {

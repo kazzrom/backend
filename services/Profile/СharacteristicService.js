@@ -10,7 +10,7 @@ export default class CharacteristicService {
     return response;
   }
 
-  static async updateStudentAttitudesByStudentId({ studentId }) {
+  static async updateStudentAttitudesByStudentId({ studentId, data }) {
     await CharacteristicRepository.updateStudentAttitudesByStudentId({
       studentId,
       data,
@@ -18,12 +18,9 @@ export default class CharacteristicService {
   }
 
   static async updateStudentPersonalityByStudentId({ studentId, data }) {
-    const { StudentPersonality, Hobbies, Inclinations } = data;
     await CharacteristicRepository.updateStudentPersonalityByStudentId({
       studentId,
-      studentPersonality: StudentPersonality,
-      hobbies: Hobbies,
-      inclinations: Inclinations,
+      ...data,
     });
   }
 }

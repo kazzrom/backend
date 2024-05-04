@@ -27,8 +27,8 @@ export default class FamilyController {
 
   static async createFamilyMember(req, res) {
     try {
-      await FamilyService.createFamilyMember(req.body);
-      res.sendStatus(201);
+      const response = await FamilyService.createFamilyMember(req.body);
+      res.status(201).json(response);
     } catch (error) {
       console.log(error);
       res.status(500).json(error);

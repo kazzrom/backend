@@ -16,7 +16,10 @@ export default class IndividualWorkRepository {
   }
 
   static async createIndividualWork(data) {
-    await IndividualWork.create(data);
+    const individualWork = await IndividualWork.create(data);
+    const newIndividualWork = await IndividualWork.findByPk(individualWork.id);
+
+    return newIndividualWork;
   }
 
   static async updateIndividualWork({ id, data }) {

@@ -17,8 +17,10 @@ export default class IndividualWorkController {
 
   static async createIndividualWork(req, res) {
     try {
-      await IndividualWorkService.createIndividualWork(req.body);
-      res.sendStatus(201);
+      const response = await IndividualWorkService.createIndividualWork(
+        req.body
+      );
+      res.status(201).json(response);
     } catch (error) {
       console.log(error);
       res.status(500).json(error);

@@ -48,6 +48,15 @@ export default class FamilyRepository {
     await createdFamilyMember.setMemberPersonalDatum(personalData);
 
     await currentStudent.addFamilyMember(createdFamilyMember);
+
+    const newFamilyMember = await FamilyMember.findByPk(
+      createdFamilyMember.id,
+      {
+        include: [MemberPersonalData],
+      }
+    );
+
+    return newFamilyMember;
   }
 
   static async updateFamilyMember({ id, familyMember, memberPersonalData }) {

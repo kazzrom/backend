@@ -6,16 +6,23 @@ const { Student, Hobby, Inclination, StudentAttitudes, StudentPersonality } =
 
 export default class СharacteristicRepository {
   static async getStudentCharacteristicByStudentId(studentId) {
-    const student = Student.findOne({
-      where: { id: studentId },
-      include: [Hobby, Inclination, StudentAttitudes, StudentPersonality],
+    const studentAttitudes = await StudentAttitudes.findOne({
+      where: { studentId },
     });
 
-    if (!student) {
-      return null;
-    }
+    const studentPersonality = await StudentPersonality.findOne({
+      where: { studentId },
+    });
 
-    return student;
+    const hobbies = await Hobby.findAll({
+      where: { studentId },
+    });
+
+    const inclinations = await Inclination.findAll({
+      where: { studentId },
+    });
+
+    return { studentAttitudes, studentPersonality, hobbies, inclinations };
   }
 
   static async updateStudentAttitudesByStudentId({ studentId, data }) {
@@ -44,9 +51,15 @@ export default class СharacteristicRepository {
       name: hobby.name,
     }));
 
-    const xorHobbies = _.xorBy(hobbies, studentHobbies, "name");
+    const newStudentHobbies = hobbies.map((hobby) => ({
+      name: hobby,
+    }));
 
-    const newHobbies = hobbies.filter((hobby) => xorHobbies.includes(hobby));
+    const xorHobbies = _.xorBy(newStudentHobbies, studentHobbies, "name");
+
+    const newHobbies = newStudentHobbies.filter((hobby) =>
+      xorHobbies.includes(hobby)
+    );
     const oldHobbies = studentHobbies.filter((hobby) =>
       xorHobbies.includes(hobby)
     );
@@ -63,9 +76,17 @@ export default class СharacteristicRepository {
       name: inclination.name,
     }));
 
-    const xorInclinations = _.xorBy(inclinations, studentInclinations, "name");
+    const newStudentInclinations = inclinations.map((inclination) => ({
+      name: inclination,
+    }));
 
-    const newInclinations = inclinations.filter((inclination) =>
+    const xorInclinations = _.xorBy(
+      newStudentInclinations,
+      studentInclinations,
+      "name"
+    );
+
+    const newInclinations = newStudentInclinations.filter((inclination) =>
       xorInclinations.includes(inclination)
     );
 

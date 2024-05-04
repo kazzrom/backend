@@ -9,7 +9,10 @@ export default class IndividualWorkService {
   }
 
   static async createIndividualWork(data) {
-    await IndividualWorkRepository.createIndividualWork(data);
+    const newIndividualWork =
+      await IndividualWorkRepository.createIndividualWork(data);
+
+    return newIndividualWork;
   }
 
   static async updateIndividualWork({ id, data }) {
