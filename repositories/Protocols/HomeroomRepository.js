@@ -14,7 +14,11 @@ export default class HomeroomRepository {
   }
 
   static async createProtocol(data) {
-    await Homeroom.create(data);
+    const createdProtocol = await Homeroom.create(data);
+
+    const newProtocol = await Homeroom.findByPk(createdProtocol.id);
+
+    return newProtocol;
   }
 
   static async updateProtocol({ id, data }) {

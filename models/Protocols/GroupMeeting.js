@@ -12,10 +12,7 @@ const GroupMeeting = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
+    content: DataTypes.TEXT,
     numberPeoplePresent: {
       type: DataTypes.INTEGER,
       allowNull: false,

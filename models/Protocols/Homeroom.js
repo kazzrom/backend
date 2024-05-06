@@ -22,23 +22,14 @@ const Homeroom = sequelize.define(
       allowNull: false,
     },
     // Цель
-    purpose: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    tasks: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
+    purpose: DataTypes.STRING,
+
+    tasks: DataTypes.TEXT,
+
     // Ход проведения
-    courseOfMeeting: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    results: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
+    courseOfMeeting: DataTypes.TEXT,
+
+    results: DataTypes.TEXT,
   },
   { timestamps: false }
 );
