@@ -8,6 +8,7 @@ import ProblemFamilyRouter from "./ProblemFamilyRouter.js";
 import RegisteredOPPNRouter from "./RegisteredOPPNRouter.js";
 import UnderWardshipRouter from "./UnderWardshipRouter.js";
 import UnemployedRouter from "./UnemployedRouter.js";
+import LargeFamilyRouter from "./LargeFamilyRouter.js";
 import StudentsWithFamilyController from "../../controllers/SocialPassport/StudentWithFamilyController.js";
 
 const socialPassportRouter = Router();
@@ -21,6 +22,7 @@ socialPassportRouter.use("/problem-families", ProblemFamilyRouter);
 socialPassportRouter.use("/students-registered-oppn", RegisteredOPPNRouter);
 socialPassportRouter.use("/under-wardships", UnderWardshipRouter);
 socialPassportRouter.use("/unemployed-parents", UnemployedRouter);
+socialPassportRouter.use("/large-families", LargeFamilyRouter);
 
 socialPassportRouter.get(
   "/students-with-parents/:groupId",
