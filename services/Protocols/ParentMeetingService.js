@@ -9,22 +9,28 @@ export default class ParentMeetingService {
     return response;
   }
 
+  static async getParentsByGroupId(groupId) {
+    const response = await ParentMeetingRepository.getParentsByGroupId(groupId);
+
+    return response;
+  }
+
   static async createProtocol(data) {
-    const { theme, meetingDate, content, groupId, parentIds } = data;
+    const { theme, meetingDate, content, groupId, FamilyMembers } = data;
 
     await ParentMeetingRepository.createProtocol({
       protocol: { theme, meetingDate, content, groupId },
-      parentIds,
+      presentParents: FamilyMembers,
     });
   }
 
   static async updateProtocol({ id, data }) {
-    const { theme, meetingDate, content, parentIds } = data;
+    const { theme, meetingDate, content, FamilyMembers } = data;
 
     await ParentMeetingRepository.updateProtocol({
       id,
-      data: { theme, meetingDate, content },
-      parentIds,
+      updatedProtocol: { theme, meetingDate, content },
+      presentParents: FamilyMembers,
     });
   }
 

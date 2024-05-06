@@ -14,6 +14,17 @@ export default class ParentMeetingController {
     }
   }
 
+  static async getParentsByGroupId(req, res) {
+    try {
+      const { groupId } = req.params;
+      const response = await ParentMeetingService.getParentsByGroupId(groupId);
+      res.status(200).json(response);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
   static async createProtocol(req, res) {
     try {
       await ParentMeetingService.createProtocol(req.body);

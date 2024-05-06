@@ -1,7 +1,7 @@
 import { Op } from "sequelize";
 import initModels from "../../models/initModels.js";
 
-const { ParentMeeting, FamilyMember: Parent } = initModels();
+const { ParentMeeting, FamilyMember: Parent, Student } = initModels();
 
 export default class ParentMeetingRepository {
   static async getProtocolsByGroupId(groupId) {
@@ -19,34 +19,54 @@ export default class ParentMeetingRepository {
     return protocols;
   }
 
-  static async createProtocol({ protocol, parentIds }) {
-    const createdProtocol = await ParentMeeting.create(protocol);
-
+  static async getParentsByGroupId(groupId) {
     const parents = await Parent.findAll({
-      where: {
-        id: {
-          [Op.or]: parentIds,
-        },
+      include: {
+        attributes: [],
+        model: Student,
+        where: { groupId },
       },
     });
 
-    await createdProtocol.setParents(parents);
+    if (!parents) {
+      return null;
+    }
+
+    return parents;
   }
 
-  static async updateProtocol({ id, updatedProtocol, parentIds }) {
+  static async createProtocol({ protocol, presentParents }) {
+    const createdProtocol = await ParentMeeting.create(protocol);
+
+    const parentIds = presentParents.map((parent) => parent.id);
+
+    const parents = await Parent.findAll({
+      where: { id: { [Op.in]: parentIds } },
+    });
+
+    await createdProtocol.setFamilyMembers(parents);
+
+    const newProtocol = await ParentMeeting.findByPk(createdProtocol.id, {
+      include: {
+        model: Parent,
+      },
+    });
+
+    return newProtocol;
+  }
+
+  static async updateProtocol({ id, updatedProtocol, presentParents }) {
     const protocol = await ParentMeeting.findByPk(id);
+
+    const parentIds = presentParents.map((parent) => parent.id);
+
+    const parents = await Parent.findAll({
+      where: { id: { [Op.in]: parentIds } },
+    });
 
     protocol.update(updatedProtocol);
 
-    const parents = await Parent.findAll({
-      where: {
-        id: {
-          [Op.or]: parentIds,
-        },
-      },
-    });
-
-    await protocol.setParents(parents);
+    await protocol.setFamilyMembers(parents);
   }
 
   static async deleteProtocol(id) {

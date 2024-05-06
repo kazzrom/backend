@@ -14,10 +14,13 @@ export default class GroupMeetingRepository {
   }
 
   static async createProtocol(data) {
-    await GroupMeeting.create(data);
+    const createdProtocol = await GroupMeeting.create(data);
+
+    const newProtocol = await GroupMeeting.findByPk(createdProtocol.id);
+    return newProtocol;
   }
 
-  static async updateProtocol({id, data}) {
+  static async updateProtocol({ id, data }) {
     await GroupMeeting.update(data, { where: { id } });
   }
 

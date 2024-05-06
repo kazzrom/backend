@@ -8,6 +8,11 @@ parentMeetingRouter.get(
   ParentMeetingController.getProtocolsByGroupId
 );
 
+parentMeetingRouter.get(
+  "/:groupId/parents",
+  ParentMeetingController.getParentsByGroupId
+);
+
 parentMeetingRouter.post("/", ParentMeetingController.createProtocol);
 parentMeetingRouter.put("/:id", ParentMeetingController.updateProtocol);
 parentMeetingRouter.delete("/:id", ParentMeetingController.deleteProtocol);
