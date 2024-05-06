@@ -15,10 +15,20 @@ export default class UnemployedRepository {
 
     return unemployedParents;
   }
-
+  // FIXME: пофиксить создание записи
   static async createRecord(data) {
-    const { studentId, parentId, note } = data;
-    await UnemployedParent.create({ studentId, parentId, note });
+    const { Student: student, FamilyMember: parent, note } = data;
+    const createdRecord = await UnemployedParent.create({
+      studentId: student.id,
+      parentId: parent.id,
+      note,
+    });
+
+    const newRecord = await UnemployedParent.findByPk(createdRecord.id, {
+      include: [Student, Parent],
+    });
+
+    return newRecord;
   }
 
   static async updateRecord(id, data) {

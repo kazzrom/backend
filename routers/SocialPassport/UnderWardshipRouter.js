@@ -1,6 +1,8 @@
-import getDefaultRouter from "./DefaultRouters/DefaultRouter.js";
+import { Router } from "express";
 import UnderWardshipController from "../../controllers/SocialPassport/UnderWardshipController.js";
 
-const UnderWardshipRouter = getDefaultRouter(UnderWardshipController);
+const UnderWardshipRouter = Router();
+
+UnderWardshipRouter.use("/:groupId", UnderWardshipController.getRecords);
 
 export default UnderWardshipRouter;

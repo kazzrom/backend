@@ -1,6 +1,10 @@
-import getDefaultRouter from "./DefaultRouters/DefaultByGroupRouter.js";
+import { Router } from "express";
 import RegisteredOPPNController from "../../controllers/SocialPassport/RegisteredOPPNController.js";
 
-const RegisteredOPPNRouter = getDefaultRouter(RegisteredOPPNController);
+const RegisteredOPPNRouter = Router();
+
+RegisteredOPPNRouter.get("/:groupId", RegisteredOPPNController.getRecords);
+RegisteredOPPNRouter.post("/", RegisteredOPPNController.createRecord);
+RegisteredOPPNRouter.delete("/:id", RegisteredOPPNController.deleteRecord);
 
 export default RegisteredOPPNRouter;

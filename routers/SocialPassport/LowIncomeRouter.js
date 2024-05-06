@@ -1,6 +1,10 @@
-import getDefaultRouter from "./DefaultRouters/DefaultByGroupRouter.js";
+import { Router } from "express";
 import LowIncomeController from "../../controllers/SocialPassport/LowIncomeController.js";
 
-const LowIncomeRouter = getDefaultRouter(LowIncomeController);
+const LowIncomeRouter = Router();
+
+LowIncomeRouter.get("/:groupId", LowIncomeController.getRecords);
+LowIncomeRouter.post("/", LowIncomeController.createRecord);
+LowIncomeRouter.delete("/:id", LowIncomeController.deleteRecord);
 
 export default LowIncomeRouter;

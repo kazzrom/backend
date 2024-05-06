@@ -17,8 +17,21 @@ export default class ChronicDiseasesRepository {
   }
 
   static async createRecord(data) {
-    const { studentId, disease, note } = data;
-    await StudentsWithChronicDiseases.create({ studentId, disease, note });
+    const { Student: student, disease, note } = data;
+    const createdRecord = await StudentsWithChronicDiseases.create({
+      studentId: student.id,
+      disease,
+      note,
+    });
+
+    const newRecord = await StudentsWithChronicDiseases.findByPk(
+      createdRecord.id,
+      {
+        include: [Student]
+      }
+    );
+
+    return newRecord;
   }
 
   static async updateRecord(id, data) {

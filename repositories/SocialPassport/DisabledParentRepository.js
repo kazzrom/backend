@@ -17,8 +17,18 @@ export default class DisabledParentRepository {
   }
 
   static async createRecord(data) {
-    const { studentId, parentId, note } = data;
-    await DisabledParent.create({ studentId, parentId, note });
+    const { Student: student, FamilyMember: parent, note } = data;
+    const createdRecord = await DisabledParent.create({
+      studentId: student.id,
+      parentId: parent.id,
+      note,
+    });
+
+    const newRecord = await DisabledParent.findByPk(createdRecord.id, {
+      include: [Student, Parent],
+    });
+
+    return newRecord;
   }
 
   static async updateRecord(id, data) {

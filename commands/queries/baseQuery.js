@@ -36,6 +36,7 @@ await models.RelationName.bulkCreate([
   { name: "Дедушка" },
   { name: "Сестра" },
   { name: "Брат" },
+  { name: "Опекун" },
 ]);
 
 await models.InclinationName.bulkCreate([

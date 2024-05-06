@@ -1,8 +1,39 @@
-import DefaultController from "./DefaultControllers/DefaultByGroupController.js";
 import RegisteredOPPNRepository from "../../repositories/SocialPassport/RegisteredOPPNRepository.js";
 
-const RegisteredOPPNController = new DefaultController(
-  RegisteredOPPNRepository
-);
+class RegisteredOPPNController {
+  static async getRecords(req, res) {
+    try {
+      const { groupId } = req.params;
+      const response = await RegisteredOPPNRepository.getRecordsByGroupId(
+        groupId
+      );
+      res.status(200).json(response);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
+  static async createRecord(req, res) {
+    try {
+      const response = await RegisteredOPPNRepository.createRecord(req.body);
+      res.status(201).json(response);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+
+  static async deleteRecord(req, res) {
+    try {
+      const { id } = req.params;
+      await RegisteredOPPNRepository.deleteRecord(id);
+      res.sendStatus(204);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+}
 
 export default RegisteredOPPNController;

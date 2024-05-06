@@ -17,6 +17,12 @@ const FamilyMember = sequelize.define(
       type: DataTypes.STRING(50),
       allowNull: false,
     },
+    fullname: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${this.surname} ${this.name} ${this.patronymic}`;
+      },
+    },
     relation: {
       type: DataTypes.STRING(20),
       allowNull: false,

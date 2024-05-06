@@ -17,8 +17,18 @@ export default class RegisteredOPPNRepository {
   }
 
   static async createRecord(data) {
-    const { studentId, reason, note } = data;
-    await StudentRegisteredOPPN.create({ studentId, reason, note });
+    const { Student: student, reason, note } = data;
+    const createdRecord = await StudentRegisteredOPPN.create({
+      studentId: student.id,
+      reason,
+      note,
+    });
+
+    const newRecord = await StudentRegisteredOPPN.findByPk(createdRecord.id, {
+      include: [Student],
+    });
+
+    return newRecord;
   }
 
   static async updateRecord(id, data) {

@@ -1,8 +1,10 @@
-import getDefaultRouter from "./DefaultRouters/DefaultByGroupRouter.js";
+import { Router } from "express";
 import ChronicDiseasesController from "../../controllers/SocialPassport/ChronicDiseasesController.js";
 
-const ChronicDiseasesRouter = getDefaultRouter(
-  ChronicDiseasesController
-);
+const ChronicDiseasesRouter = Router();
+
+ChronicDiseasesRouter.get("/:groupId", ChronicDiseasesController.getRecords);
+ChronicDiseasesRouter.post("/", ChronicDiseasesController.createRecord);
+ChronicDiseasesRouter.delete("/:id", ChronicDiseasesController.deleteRecord);
 
 export default ChronicDiseasesRouter;

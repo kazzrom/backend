@@ -17,8 +17,14 @@ export default class LowIncomeRepository {
   }
 
   static async createRecord(data) {
-    const { studentId, note } = data;
-    await LowIncomeFamily.create({ studentId, note });
+    const { Student: student, note } = data;
+    const createdRecord = await LowIncomeFamily.create({ studentId: student.id, note });
+
+    const newRecord = await LowIncomeFamily.findByPk(createdRecord.id, {
+      include: [Student],
+    });
+
+    return newRecord;
   }
 
   static async updateRecord(id, data) {

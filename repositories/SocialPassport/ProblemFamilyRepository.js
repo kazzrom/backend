@@ -17,8 +17,18 @@ export default class ProblemFamilyRepository {
   }
 
   static async createRecord(data) {
-    const { studentId, reason, note } = data;
-    await ProblemFamily.create({ studentId, reason, note });
+    const { Student: student, reason, note } = data;
+    const createdRecord = await ProblemFamily.create({
+      studentId: student.id,
+      reason,
+      note,
+    });
+
+    const newRecord = await ProblemFamily.findByPk(createdRecord.id, {
+      include: [Student],
+    });
+
+    return newRecord;
   }
 
   static async updateRecord(id, data) {
