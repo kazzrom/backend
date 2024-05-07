@@ -14,8 +14,8 @@ export default class HomeroomController {
 
   static async createProtocol(req, res) {
     try {
-      await HomeroomService.createProtocol(req.body);
-      res.sendStatus(201);
+      const response = await HomeroomService.createProtocol(req.body);
+      res.status(201).json(response);
     } catch (error) {
       console.log(error);
       res.status(500).send(error);

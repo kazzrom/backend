@@ -37,14 +37,15 @@ export default class ParentMeetingRepository {
 
   static async createProtocol({ protocol, presentParents }) {
     const createdProtocol = await ParentMeeting.create(protocol);
+    console.log(presentParents);
 
-    const parentIds = presentParents.map((parent) => parent.id);
-
-    const parents = await Parent.findAll({
-      where: { id: { [Op.in]: parentIds } },
-    });
-
-    await createdProtocol.setFamilyMembers(parents);
+    if (presentParents !== null) {
+      const parentIds = presentParents.map((parent) => parent.id);
+      const parents = await Parent.findAll({
+        where: { id: { [Op.in]: parentIds } },
+      });
+      await createdProtocol.setFamilyMembers(parents);
+    }
 
     const newProtocol = await ParentMeeting.findByPk(createdProtocol.id, {
       include: {

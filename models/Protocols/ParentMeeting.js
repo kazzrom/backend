@@ -12,10 +12,7 @@ const ParentMeeting = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
+    content: DataTypes.TEXT,
   },
   { timestamps: false }
 );

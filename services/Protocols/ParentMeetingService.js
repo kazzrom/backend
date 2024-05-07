@@ -18,10 +18,12 @@ export default class ParentMeetingService {
   static async createProtocol(data) {
     const { theme, meetingDate, content, groupId, FamilyMembers } = data;
 
-    await ParentMeetingRepository.createProtocol({
+    const newProtocol = await ParentMeetingRepository.createProtocol({
       protocol: { theme, meetingDate, content, groupId },
       presentParents: FamilyMembers,
     });
+
+    return newProtocol;
   }
 
   static async updateProtocol({ id, data }) {

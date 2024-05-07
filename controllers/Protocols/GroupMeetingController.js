@@ -14,8 +14,8 @@ export default class GroupMeetingController {
 
   static async createProtocol(req, res) {
     try {
-      await GroupMeetingService.createProtocol(req.body);
-      res.sendStatus(201);
+      const response = await GroupMeetingService.createProtocol(req.body);
+      res.status(201).json(response);
     } catch (error) {
       console.log(error);
       res.status(500).send(error);

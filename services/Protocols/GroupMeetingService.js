@@ -10,7 +10,9 @@ export default class GroupMeetingService {
   }
 
   static async createProtocol(data) {
-    await GroupMeetingRepository.createProtocol(data);
+    const newProtocol = await GroupMeetingRepository.createProtocol(data);
+
+    return newProtocol;
   }
 
   static async updateProtocol({ id, data }) {

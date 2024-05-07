@@ -27,8 +27,8 @@ export default class ParentMeetingController {
 
   static async createProtocol(req, res) {
     try {
-      await ParentMeetingService.createProtocol(req.body);
-      res.sendStatus(201);
+      const response = await ParentMeetingService.createProtocol(req.body);
+      res.status(201).json(response);
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
