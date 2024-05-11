@@ -3,6 +3,6 @@ import IncompleteFamilyController from "../../controllers/SocialPassport/Incompl
 
 const IncompleteFamilyRouter = Router();
 
-IncompleteFamilyRouter.use("/:groupId", IncompleteFamilyController.getRecords);
+IncompleteFamilyRouter.use("/", IncompleteFamilyController.getRecords);
 
 export default IncompleteFamilyRouter;

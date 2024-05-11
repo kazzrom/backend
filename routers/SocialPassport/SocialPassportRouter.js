@@ -25,7 +25,7 @@ socialPassportRouter.use("/unemployed-parents", UnemployedRouter);
 socialPassportRouter.use("/large-families", LargeFamilyRouter);
 
 socialPassportRouter.get(
-  "/students-with-parents/:groupId",
+  "/students-with-parents/",
   StudentsWithFamilyController
 );
 

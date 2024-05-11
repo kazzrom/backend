@@ -3,8 +3,9 @@ import UnemployedRepository from "../../repositories/SocialPassport/UnemployedRe
 class UnemployedController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
-      const response = await UnemployedRepository.getRecordsByGroupId(groupId);
+      const response = await UnemployedRepository.getRecordsByGroupId(
+        req.groupId
+      );
       res.status(200).json(response);
     } catch (error) {
       console.log(error);

@@ -3,6 +3,6 @@ import UnderWardshipController from "../../controllers/SocialPassport/UnderWards
 
 const UnderWardshipRouter = Router();
 
-UnderWardshipRouter.use("/:groupId", UnderWardshipController.getRecords);
+UnderWardshipRouter.use("/", UnderWardshipController.getRecords);
 
 export default UnderWardshipRouter;

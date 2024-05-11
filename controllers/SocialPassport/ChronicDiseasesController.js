@@ -3,9 +3,8 @@ import ChronicDiseasesRepository from "../../repositories/SocialPassport/Chronic
 class ChronicDiseasesController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
       const response = await ChronicDiseasesRepository.getRecordsByGroupId(
-        groupId
+        req.groupId
       );
       res.status(200).json(response);
     } catch (error) {

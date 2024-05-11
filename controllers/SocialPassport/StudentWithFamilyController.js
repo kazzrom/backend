@@ -2,8 +2,7 @@ import getStudentWithFamilyByGroupId from "../../repositories/SocialPassport/Stu
 
 export default async function StudentsWithFamilyController(req, res) {
   try {
-    const { groupId } = req.params;
-    const response = await getStudentWithFamilyByGroupId(groupId);
+    const response = await getStudentWithFamilyByGroupId(req.groupId);
     res.status(200).json(response);
   } catch (error) {
     console.log(error);

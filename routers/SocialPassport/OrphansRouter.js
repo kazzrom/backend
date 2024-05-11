@@ -3,6 +3,6 @@ import OrphansController from "../../controllers/SocialPassport/OrphansControlle
 
 const OrphansRouter = Router();
 
-OrphansRouter.use("/:groupId", OrphansController.getRecords);
+OrphansRouter.use("/", OrphansController.getRecords);
 
 export default OrphansRouter;

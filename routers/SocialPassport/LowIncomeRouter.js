@@ -3,7 +3,7 @@ import LowIncomeController from "../../controllers/SocialPassport/LowIncomeContr
 
 const LowIncomeRouter = Router();
 
-LowIncomeRouter.get("/:groupId", LowIncomeController.getRecords);
+LowIncomeRouter.get("/", LowIncomeController.getRecords);
 LowIncomeRouter.post("/", LowIncomeController.createRecord);
 LowIncomeRouter.delete("/:id", LowIncomeController.deleteRecord);
 

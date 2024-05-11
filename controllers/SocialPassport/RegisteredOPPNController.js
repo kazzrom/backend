@@ -3,9 +3,8 @@ import RegisteredOPPNRepository from "../../repositories/SocialPassport/Register
 class RegisteredOPPNController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
       const response = await RegisteredOPPNRepository.getRecordsByGroupId(
-        groupId
+        req.groupId
       );
       res.status(200).json(response);
     } catch (error) {

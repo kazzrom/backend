@@ -3,9 +3,8 @@ import DisabledParentRepository from "../../repositories/SocialPassport/Disabled
 class DisabledParentController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
       const response = await DisabledParentRepository.getRecordsByGroupId(
-        groupId
+        req.groupId
       );
       res.status(200).json(response);
     } catch (error) {

@@ -3,8 +3,7 @@ import IncompleteFamilyRepository from "../../repositories/SocialPassport/Incomp
 class IncompleteFamilyController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
-      const response = await IncompleteFamilyRepository.getRecords(groupId);
+      const response = await IncompleteFamilyRepository.getRecords(req.groupId);
       res.status(200).json(response);
     } catch (error) {
       console.log(error);

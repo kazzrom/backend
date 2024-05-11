@@ -3,9 +3,8 @@ import ProblemFamilyRepository from "../../repositories/SocialPassport/ProblemFa
 class ProblemFamilyController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
       const response = await ProblemFamilyRepository.getRecordsByGroupId(
-        groupId
+        req.groupId
       );
       res.status(200).json(response);
     } catch (error) {

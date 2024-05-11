@@ -3,7 +3,7 @@ import ProblemFamilyController from "../../controllers/SocialPassport/ProblemFam
 
 const ProblemFamilyRouter = Router();
 
-ProblemFamilyRouter.get("/:groupId", ProblemFamilyController.getRecords);
+ProblemFamilyRouter.get("/", ProblemFamilyController.getRecords);
 ProblemFamilyRouter.post("/", ProblemFamilyController.createRecord);
 ProblemFamilyRouter.delete("/:id", ProblemFamilyController.deleteRecord);
 

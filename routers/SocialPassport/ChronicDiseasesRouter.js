@@ -3,7 +3,7 @@ import ChronicDiseasesController from "../../controllers/SocialPassport/ChronicD
 
 const ChronicDiseasesRouter = Router();
 
-ChronicDiseasesRouter.get("/:groupId", ChronicDiseasesController.getRecords);
+ChronicDiseasesRouter.get("/", ChronicDiseasesController.getRecords);
 ChronicDiseasesRouter.post("/", ChronicDiseasesController.createRecord);
 ChronicDiseasesRouter.delete("/:id", ChronicDiseasesController.deleteRecord);
 

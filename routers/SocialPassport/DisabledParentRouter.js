@@ -3,7 +3,7 @@ import DisabledParentController from "../../controllers/SocialPassport/DisabledP
 
 const DisabledParentRouter = Router();
 
-DisabledParentRouter.get("/:groupId", DisabledParentController.getRecords);
+DisabledParentRouter.get("/", DisabledParentController.getRecords);
 DisabledParentRouter.post("/", DisabledParentController.createRecord);
 DisabledParentRouter.delete("/:id", DisabledParentController.deleteRecord);
 

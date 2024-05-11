@@ -3,8 +3,7 @@ import UnderWardshipRepository from "../../repositories/SocialPassport/UnderWard
 class UnderWardshipController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
-      const response = await UnderWardshipRepository.getRecords(groupId);
+      const response = await UnderWardshipRepository.getRecords(req.groupId);
       res.status(200).json(response);
     } catch (error) {
       console.log(error);

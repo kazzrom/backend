@@ -35,7 +35,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/students", StudentRouter);
 app.use("/profile", ProfileRouter);
 app.use("/protocols", ProtocolRouter);
-app.use("/social-passport", SocialPassportRouter);
+app.use("/social-passport", TokenService.checkAccess, SocialPassportRouter);
 
 app.use("/auth", AuthRootRouter);
 

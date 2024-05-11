@@ -3,7 +3,7 @@ import UnemployedController from "../../controllers/SocialPassport/UnemployedCon
 
 const UnemployedRouter = Router();
 
-UnemployedRouter.get("/:groupId", UnemployedController.getRecords);
+UnemployedRouter.get("/", UnemployedController.getRecords);
 UnemployedRouter.post("/", UnemployedController.createRecord);
 UnemployedRouter.delete("/:id", UnemployedController.deleteRecord);
 

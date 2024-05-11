@@ -35,6 +35,7 @@ export default class FamilyRepository {
     familyMember,
     memberPersonalData,
   }) {
+    console.log(studentId);
     const currentStudent = await Student.findByPk(studentId, {
       include: {
         model: FamilyMember,

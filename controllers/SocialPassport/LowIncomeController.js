@@ -3,8 +3,9 @@ import LowIncomeRepository from "../../repositories/SocialPassport/LowIncomeRepo
 class LowIncomeController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
-      const response = await LowIncomeRepository.getRecordsByGroupId(groupId);
+      const response = await LowIncomeRepository.getRecordsByGroupId(
+        req.groupId
+      );
       res.status(200).json(response);
     } catch (error) {
       console.log(error);

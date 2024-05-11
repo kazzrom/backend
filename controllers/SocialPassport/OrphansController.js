@@ -3,8 +3,7 @@ import OrphansRepository from "../../repositories/SocialPassport/OrphansReposito
 class OrphansController {
   static async getRecords(req, res) {
     try {
-      const { groupId } = req.params;
-      const response = await OrphansRepository.getRecords(groupId);
+      const response = await OrphansRepository.getRecords(req.groupId);
       res.status(200).json(response);
     } catch (error) {
       console.log(error);

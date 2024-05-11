@@ -3,7 +3,7 @@ import RegisteredOPPNController from "../../controllers/SocialPassport/Registere
 
 const RegisteredOPPNRouter = Router();
 
-RegisteredOPPNRouter.get("/:groupId", RegisteredOPPNController.getRecords);
+RegisteredOPPNRouter.get("/", RegisteredOPPNController.getRecords);
 RegisteredOPPNRouter.post("/", RegisteredOPPNController.createRecord);
 RegisteredOPPNRouter.delete("/:id", RegisteredOPPNController.deleteRecord);
 
