@@ -3,9 +3,8 @@ import ParentMeetingService from "../../services/Protocols/ParentMeetingService.
 export default class ParentMeetingController {
   static async getProtocolsByGroupId(req, res) {
     try {
-      const { groupId } = req.params;
       const response = await ParentMeetingService.getProtocolsByGroupId(
-        groupId
+        req.groupId
       );
       res.status(200).json(response);
     } catch (error) {
@@ -16,8 +15,9 @@ export default class ParentMeetingController {
 
   static async getParentsByGroupId(req, res) {
     try {
-      const { groupId } = req.params;
-      const response = await ParentMeetingService.getParentsByGroupId(groupId);
+      const response = await ParentMeetingService.getParentsByGroupId(
+        req.groupId
+      );
       res.status(200).json(response);
     } catch (error) {
       console.log(error);
@@ -27,7 +27,10 @@ export default class ParentMeetingController {
 
   static async createProtocol(req, res) {
     try {
-      const response = await ParentMeetingService.createProtocol(req.body);
+      const response = await ParentMeetingService.createProtocol({
+        data: req.body,
+        groupId: req.groupId,
+      });
       res.status(201).json(response);
     } catch (error) {
       console.log(error);

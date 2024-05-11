@@ -5,3 +5,7 @@ node_modules
 !.env.project
 !.env.vault
 tests
+data
+Dockerfile
+docker-compose.yaml
+.dockerignore

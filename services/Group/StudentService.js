@@ -13,9 +13,8 @@ export default class StudentService {
     return response;
   }
 
-  static async createStudent(data) {
-    const { surname, name, patronymic, sex, groupId, PersonalDatum } = data;
-
+  static async createStudent({ data, groupId }) {
+    const { surname, name, patronymic, sex, PersonalDatum } = data;
     await StudentRepository.createStudent({
       student: { surname, name, patronymic, sex, groupId },
       personalData: PersonalDatum,

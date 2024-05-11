@@ -3,8 +3,9 @@ import GroupMeetingService from "../../services/Protocols/GroupMeetingService.js
 export default class GroupMeetingController {
   static async getProtocolsByGroupId(req, res) {
     try {
-      const { groupId } = req.params;
-      const response = await GroupMeetingService.getProtocolsByGroupId(groupId);
+      const response = await GroupMeetingService.getProtocolsByGroupId(
+        req.groupId
+      );
       res.status(200).send(response);
     } catch (error) {
       console.log(error);
@@ -14,7 +15,10 @@ export default class GroupMeetingController {
 
   static async createProtocol(req, res) {
     try {
-      const response = await GroupMeetingService.createProtocol(req.body);
+      const response = await GroupMeetingService.createProtocol({
+        data: req.body,
+        groupId: req.groupId,
+      });
       res.status(201).json(response);
     } catch (error) {
       console.log(error);

@@ -3,13 +3,10 @@ import ParentMeetingController from "../../controllers/Protocols/ParentMeetingCo
 
 const parentMeetingRouter = Router();
 
-parentMeetingRouter.get(
-  "/:groupId",
-  ParentMeetingController.getProtocolsByGroupId
-);
+parentMeetingRouter.get("/", ParentMeetingController.getProtocolsByGroupId);
 
 parentMeetingRouter.get(
-  "/:groupId/parents",
+  "/parents",
   ParentMeetingController.getParentsByGroupId
 );
 

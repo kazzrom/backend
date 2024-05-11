@@ -3,8 +3,9 @@ import HomeroomService from "../../services/Protocols/HomeroomService.js";
 export default class HomeroomController {
   static async getProtocolsByGroupId(req, res) {
     try {
-      const { groupId } = req.params;
-      const protocols = await HomeroomService.getProtocolsByGroupId(groupId);
+      const protocols = await HomeroomService.getProtocolsByGroupId(
+        req.groupId
+      );
       res.status(200).send(protocols);
     } catch (error) {
       console.log(error);
@@ -14,7 +15,10 @@ export default class HomeroomController {
 
   static async createProtocol(req, res) {
     try {
-      const response = await HomeroomService.createProtocol(req.body);
+      const response = await HomeroomService.createProtocol({
+        data: req.body,
+        groupId: req.groupId,
+      });
       res.status(201).json(response);
     } catch (error) {
       console.log(error);

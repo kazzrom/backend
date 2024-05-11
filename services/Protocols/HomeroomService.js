@@ -7,8 +7,11 @@ export default class HomeroomService {
     return response;
   }
 
-  static async createProtocol(data) {
-    const newProtocol = await HomeroomRepository.createProtocol(data);
+  static async createProtocol({ data, groupId }) {
+    const newProtocol = await HomeroomRepository.createProtocol({
+      ...data,
+      groupId,
+    });
 
     return newProtocol;
   }

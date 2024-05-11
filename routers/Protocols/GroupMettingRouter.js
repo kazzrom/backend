@@ -4,7 +4,7 @@ import GroupMeetingController from "../../controllers/Protocols/GroupMeetingCont
 const groupMeetingRouter = Router();
 
 groupMeetingRouter.get(
-  "/:groupId",
+  "/",
   GroupMeetingController.getProtocolsByGroupId
 );
 

@@ -9,8 +9,11 @@ export default class GroupMeetingService {
     return response;
   }
 
-  static async createProtocol(data) {
-    const newProtocol = await GroupMeetingRepository.createProtocol(data);
+  static async createProtocol({ data, groupId }) {
+    const newProtocol = await GroupMeetingRepository.createProtocol({
+      ...data,
+      groupId,
+    });
 
     return newProtocol;
   }

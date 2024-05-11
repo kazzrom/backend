@@ -15,8 +15,8 @@ export default class ParentMeetingService {
     return response;
   }
 
-  static async createProtocol(data) {
-    const { theme, meetingDate, content, groupId, FamilyMembers } = data;
+  static async createProtocol({ data, groupId }) {
+    const { theme, meetingDate, content, FamilyMembers } = data;
 
     const newProtocol = await ParentMeetingRepository.createProtocol({
       protocol: { theme, meetingDate, content, groupId },

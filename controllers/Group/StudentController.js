@@ -3,6 +3,8 @@ import StudentService from "../../services/Group/StudentService.js";
 export default class StudentController {
   static async getAllStudentByGroupId(req, res) {
     try {
+      console.log("getAllStudentByGroupId");
+      console.log(req.groupId);
       const response = await StudentService.getAllStudentByGroupId(req.groupId);
       res.status(200).json(response);
     } catch (error) {
@@ -24,7 +26,12 @@ export default class StudentController {
 
   static async createStudent(req, res) {
     try {
-      await StudentService.createStudent(req.body);
+      console.log("createStudent");
+      console.log(req.groupId);
+      await StudentService.createStudent({
+        data: req.body,
+        groupId: req.groupId,
+      });
       res.sendStatus(201);
     } catch (error) {
       console.log(error);
