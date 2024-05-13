@@ -1,4 +1,5 @@
 import StudentService from "../../services/Group/StudentService.js";
+import ErrorUtils from "../../utils/Errors.js";
 
 export default class StudentController {
   static async getAllStudentByGroupId(req, res) {
@@ -35,7 +36,7 @@ export default class StudentController {
       res.sendStatus(201);
     } catch (error) {
       console.log(error);
-      res.status(500).json(error);
+      return ErrorUtils.catchError(res, error);
     }
   }
 

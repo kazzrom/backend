@@ -34,6 +34,74 @@ export default class StudentRepository {
     return student;
   }
 
+  static async getStudentsByPhoneNumber(phoneNumber) {
+    const student = await Student.findOne({
+      include: {
+        model: PersonalData,
+        where: {
+          phoneNumber,
+        },
+      },
+    });
+
+    if (!student) {
+      return null;
+    }
+
+    return student;
+  }
+
+  static async getStudentBySNILS(SNILS) {
+    const student = await Student.findOne({
+      include: {
+        model: PersonalData,
+        where: {
+          SNILS,
+        },
+      },
+    });
+
+    if (!student) {
+      return null;
+    }
+
+    return student;
+  }
+
+  static async getStudentByMedicalPolicy(medicalPolicy) {
+    const student = await Student.findOne({
+      include: {
+        model: PersonalData,
+        where: {
+          medicalPolicy,
+        },
+      },
+    });
+
+    if (!student) {
+      return null;
+    }
+
+    return student;
+  }
+
+  static async getStudentByReportCardNumber(reportCardNumber) {
+    const student = await Student.findOne({
+      include: {
+        model: PersonalData,
+        where: {
+          reportCardNumber,
+        },
+      },
+    });
+
+    if (!student) {
+      return null;
+    }
+
+    return student;
+  }
+
   static async createStudent({ student, personalData }) {
     const createdStudent = await Student.create(student);
 
