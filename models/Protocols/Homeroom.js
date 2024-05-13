@@ -9,7 +9,7 @@ const Homeroom = sequelize.define(
       allowNull: false,
     },
     meetingDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     // Место проведения

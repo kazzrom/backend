@@ -9,7 +9,7 @@ const GroupMeeting = sequelize.define(
       allowNull: false,
     },
     meetingDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     content: DataTypes.TEXT,

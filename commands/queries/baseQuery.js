@@ -45,30 +45,37 @@ await models.InclinationName.bulkCreate([
   { name: "К бродяжничеству" },
 ]);
 
-const student = await models.Student.create({
-  surname: "Иванов",
-  name: "Иван",
-  patronymic: "Иванович",
-  sex: "Мужской",
-  groupId: 1,
-});
+await models.RelationName.bulkCreate([
+  { name: "Отец" },
+  { name: "Мать" },
+  { name: "Бабушка" },
+  { name: "Дедушка" },
+]);
 
-const personalData = await models.PersonalData.create({
-  birthday: "2000-01-01",
-  reportCardNumber: 10000,
-  phoneNumber: "+7 800 555-35-35",
-  residentialAddress: "г. Москва, ул. Ленина, д. 1",
-  SNILS: "1234567890",
-  medicalPolicy: "1234567890",
-});
+// const student = await models.Student.create({
+//   surname: "Иванов",
+//   name: "Иван",
+//   patronymic: "Иванович",
+//   sex: "Мужской",
+//   groupId: 1,
+// });
 
-await student.setPersonalDatum(personalData);
+// const personalData = await models.PersonalData.create({
+//   birthday: "2000-01-01",
+//   reportCardNumber: 10000,
+//   phoneNumber: "+7 800 555-35-35",
+//   residentialAddress: "г. Москва, ул. Ленина, д. 1",
+//   SNILS: "1234567890",
+//   medicalPolicy: "1234567890",
+// });
 
-const familyMember = await models.FamilyMember.create({
-  surname: "Иванова",
-  name: "Мария",
-  patronymic: "Ивановна",
-  relation: "Мать",
-});
+// await student.setPersonalDatum(personalData);
 
-await student.addFamilyMember(familyMember);
+// const familyMember = await models.FamilyMember.create({
+//   surname: "Иванова",
+//   name: "Мария",
+//   patronymic: "Ивановна",
+//   relation: "Мать",
+// });
+
+// await student.addFamilyMember(familyMember);
