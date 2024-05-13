@@ -11,7 +11,7 @@ import {
 import TokenService from "./Token.js";
 
 class AutoService {
-  static async signUp({ login, password, fingerprint }) {
+  static async signUp({ login, password, fingerprint, curator, group }) {
     const userData = await UserRepository.getUserData(login);
 
     if (userData) {
@@ -20,7 +20,7 @@ class AutoService {
 
     const hashedPassword = bcrypt.hashSync(password, 8);
 
-    const { id } = await UserRepository.createUser({ login, hashedPassword });
+    const { id } = await UserRepository.createUser({ login, hashedPassword, curator, group });
 
     const payload = { id, login };
 

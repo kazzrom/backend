@@ -4,7 +4,7 @@ import ErrorsUtils from "../../utils/Errors.js";
 
 class AuthController {
   static async signUp(req, res) {
-    const { login, password } = req.body;
+    const { login, password, Curator, Group } = req.body;
     const { fingerprint } = req;
 
     try {
@@ -13,6 +13,8 @@ class AuthController {
           login,
           password,
           fingerprint,
+          curator: Curator,
+          group: Group,
         });
 
       res.cookie("refreshToken", refreshToken, COOKIE_SETTINGS.REFRESH_TOKEN);

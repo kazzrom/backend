@@ -35,12 +35,11 @@ class TokenService {
     try {
       const user = await TokenService.verifyAccessToken(token);
 
-      console.log("user ", user);
-
-      req.user = user;
       const curator = await Curator.findOne({
         where: { userId: user.id },
       });
+
+      req.curator = curator;
 
       const group = await Group.findOne({
         where: { curatorId: curator.id },

@@ -1,14 +1,31 @@
 import sequelize from "../../config/connectingDB.js";
 import initModels from "../../models/initModels.js";
 
-const { User } = initModels(sequelize);
+const { User, Curator, Group, GroupName, GroupNumber } = initModels(sequelize);
 
 class UserRepository {
-  static async createUser({ login, hashedPassword }) {
+  static async createUser({ login, hashedPassword, curator, group }) {
     const user = await User.create({
       login: login,
       password: hashedPassword,
     });
+
+    const newCurator = await Curator.create(curator);
+
+    await GroupName.findOrCreate({
+      where: { name: group.groupName },
+      defaults: { name: group.groupName },
+    });
+
+    await GroupNumber.findOrCreate({
+      where: { number: group.groupNumber },
+      defaults: { number: group.groupNumber },
+    });
+
+    const newGroup = await Group.create(group);
+
+    await user.setCurator(newCurator);
+    await newCurator.addGroup(newGroup);
 
     return user;
   }
