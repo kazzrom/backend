@@ -52,6 +52,14 @@ export default class StudentService {
       throw new Conflict("Студент с таким медицинским полисом уже существует");
     }
 
+    const studentByEmail = await StudentRepository.getStudentByEmail(
+      PersonalDatum.email
+    );
+
+    if (studentByEmail) {
+      throw new Conflict("Студент с такой почтой уже существует");
+    }
+
     const newStudent = await StudentRepository.createStudent({
       student: { surname, name, patronymic, sex, groupId, note },
       personalData: PersonalDatum,
@@ -62,7 +70,7 @@ export default class StudentService {
 
   static async updateStudent({ id, data }) {
     const { surname, name, patronymic, sex, note, PersonalDatum } = data;
-
+    console.log(data);
     await StudentRepository.updateStudent({
       id,
       student: { surname, name, patronymic, sex, note },
