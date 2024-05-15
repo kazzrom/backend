@@ -102,6 +102,23 @@ export default class StudentRepository {
     return student;
   }
 
+  static async getStudentByEmail(email) {
+    const student = await Student.findOne({
+      include: {
+        model: PersonalData,
+        where: {
+          email,
+        },
+      },
+    });
+
+    if (!student) {
+      return null;
+    }
+
+    return student;
+  }
+
   static async createStudent({ student, personalData }) {
     const createdStudent = await Student.create(student);
 

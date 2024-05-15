@@ -12,11 +12,6 @@ class UserRepository {
 
     const newCurator = await Curator.create(curator);
 
-    await GroupName.findOrCreate({
-      where: { name: group.groupName },
-      defaults: { name: group.groupName },
-    });
-
     await GroupNumber.findOrCreate({
       where: { number: group.groupNumber },
       defaults: { number: group.groupNumber },
