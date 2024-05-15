@@ -16,6 +16,10 @@ const IndividualWork = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    expectedResult: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
   },
   { timestamps: false }
 );

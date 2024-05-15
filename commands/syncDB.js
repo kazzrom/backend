@@ -1,7 +1,7 @@
 import sequelize from "../config/connectingDB.js";
 import initModels from "../models/initModels.js";
 
-initModels();
+const { IndividualWork } = initModels();
 
-sequelize.sync({ alter: true });
- 
+// sequelize.sync({ alter: true });
+IndividualWork.sync({ alter: true });
