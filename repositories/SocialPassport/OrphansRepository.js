@@ -11,7 +11,7 @@ export default class OrphansRepository {
         model: FamilyMember,
         where: {
           [Op.not]: {
-            relation: { [Op.or]: ["Мать", "Отец", "Опекун"] },
+            relation: { [Op.or]: ["Мать", "Отец", "Опекун", "Брат", "Сестра"] },
           },
         },
         include: [MemberPersonalData],

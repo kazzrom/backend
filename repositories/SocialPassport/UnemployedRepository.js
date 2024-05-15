@@ -15,7 +15,7 @@ export default class UnemployedRepository {
 
     return unemployedParents;
   }
-  // FIXME: пофиксить создание записи
+
   static async createRecord(data) {
     const { Student: student, FamilyMember: parent, note } = data;
     const createdRecord = await UnemployedParent.create({

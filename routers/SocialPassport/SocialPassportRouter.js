@@ -1,6 +1,7 @@
 import { Router } from "express";
 import ChronicDiseasesRouter from "./ChronicDiseasesRouter.js";
 import DisabledParentRouter from "./DisabledParentRouter.js";
+import DisabledStudentRouter from "./DisabledStudentRouter.js";
 import IncompleteFamilyRouter from "./IncompleteFamilyRouter.js";
 import LowIncomeRouter from "./LowIncomeRouter.js";
 import OrphansRouter from "./OrphansRouter.js";
@@ -15,6 +16,7 @@ const socialPassportRouter = Router();
 
 socialPassportRouter.use("/chronic-diseases", ChronicDiseasesRouter);
 socialPassportRouter.use("/disabled-parents", DisabledParentRouter);
+socialPassportRouter.use("/disabled-students", DisabledStudentRouter);
 socialPassportRouter.use("/incomplete-families", IncompleteFamilyRouter);
 socialPassportRouter.use("/low-income-families", LowIncomeRouter);
 socialPassportRouter.use("/orphans", OrphansRouter);
