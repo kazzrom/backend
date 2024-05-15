@@ -12,25 +12,4 @@ export default class LargeFamilyController {
       res.status(500).json(error);
     }
   }
-
-  static async createRecord(req, res) {
-    try {
-      const response = await LargeFamilyRepository.createRecord(req.body);
-      res.status(201).json(response);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  }
-
-  static async deleteRecord(req, res) {
-    try {
-      const { id } = req.params;
-      await LargeFamilyRepository.deleteRecord(id);
-      res.sendStatus(204);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  }
 }

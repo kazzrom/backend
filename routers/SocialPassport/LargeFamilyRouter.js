@@ -4,7 +4,5 @@ import LargeFamilyController from "../../controllers/SocialPassport/LargeFamilyC
 const LargeFamilyRouter = Router();
 
 LargeFamilyRouter.get("/", LargeFamilyController.getRecords);
-LargeFamilyRouter.post("/", LargeFamilyController.createRecord);
-LargeFamilyRouter.delete("/:id", LargeFamilyController.deleteRecord);
 
 export default LargeFamilyRouter;

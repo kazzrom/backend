@@ -51,6 +51,8 @@ await models.RelationName.bulkCreate([
   { name: "Бабушка" },
   { name: "Дедушка" },
   { name: "Опекун" },
+  { name: "Сестра" },
+  { name: "Брат" },
 ]);
 
 // const student = await models.Student.create({
