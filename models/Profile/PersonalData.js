@@ -13,6 +13,9 @@ const PersonalData = sequelize.define(
       unique: true,
       allowNull: false,
     },
+    whereFrom: {
+      type: DataTypes.STRING,
+    },
     phoneNumber: {
       type: DataTypes.STRING(20),
       unique: true,
