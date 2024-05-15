@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 
 import AuthRootRouter from "./routers/Auth/Auth.js";
 import TokenService from "./services/Auth/Token.js";
+import GroupRouter from "./routers/Group/GroupRouter.js";
 import StudentRouter from "./routers/Group/StudentRouter.js";
 import ProfileRouter from "./routers/Profile/ProfileRouter.js";
 import ProtocolRouter from "./routers/Protocols/ProtocolRouter.js";
@@ -32,6 +33,7 @@ app.use(
 const specs = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
+app.use("/groups", GroupRouter);
 app.use("/students", StudentRouter);
 app.use("/profile", ProfileRouter);
 app.use("/protocols", ProtocolRouter);
