@@ -27,6 +27,7 @@ const Student = sequelize.define(
       values: ["Мужской", "Женский"],
       allowNull: false,
     },
+    note: DataTypes.TEXT,
   },
   { timestamps: false }
 );

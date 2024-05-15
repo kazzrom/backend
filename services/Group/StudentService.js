@@ -15,7 +15,7 @@ export default class StudentService {
   }
 
   static async createStudent({ data, groupId }) {
-    const { surname, name, patronymic, sex, PersonalDatum } = data;
+    const { surname, name, patronymic, sex, note, PersonalDatum } = data;
 
     const studentBySNILS = await StudentRepository.getStudentBySNILS(
       PersonalDatum.SNILS
@@ -53,7 +53,7 @@ export default class StudentService {
     }
 
     const newStudent = await StudentRepository.createStudent({
-      student: { surname, name, patronymic, sex, groupId },
+      student: { surname, name, patronymic, sex, groupId, note },
       personalData: PersonalDatum,
     });
 
@@ -61,11 +61,11 @@ export default class StudentService {
   }
 
   static async updateStudent({ id, data }) {
-    const { surname, name, patronymic, sex, PersonalDatum } = data;
+    const { surname, name, patronymic, sex, note, PersonalDatum } = data;
 
     await StudentRepository.updateStudent({
       id,
-      student: { surname, name, patronymic, sex },
+      student: { surname, name, patronymic, sex, note },
       personalData: PersonalDatum,
     });
   }

@@ -4,3 +4,4 @@ import initModels from "../models/initModels.js";
 initModels();
 
 sequelize.sync({ alter: true });
+ 
