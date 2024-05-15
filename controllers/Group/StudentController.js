@@ -29,11 +29,11 @@ export default class StudentController {
     try {
       console.log("createStudent");
       console.log(req.groupId);
-      await StudentService.createStudent({
+      const response = await StudentService.createStudent({
         data: req.body,
         groupId: req.groupId,
       });
-      res.sendStatus(201);
+      res.status(201).json(response);
     } catch (error) {
       console.log(error);
       return ErrorUtils.catchError(res, error);

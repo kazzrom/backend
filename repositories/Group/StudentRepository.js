@@ -113,6 +113,12 @@ export default class StudentRepository {
 
     await createdStudent.setStudentAttitude(studentAttitudes);
     await createdStudent.setStudentPersonality(studentPersonality);
+
+    const newStudent = await Student.findByPk(createdStudent.id, {
+      include: [PersonalData],
+    });
+
+    return newStudent;
   }
 
   static async updateStudent({ id, student, personalData }) {

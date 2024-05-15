@@ -52,10 +52,12 @@ export default class StudentService {
       throw new Conflict("Студент с таким медицинским полисом уже существует");
     }
 
-    await StudentRepository.createStudent({
+    const newStudent = await StudentRepository.createStudent({
       student: { surname, name, patronymic, sex, groupId },
       personalData: PersonalDatum,
     });
+
+    return newStudent;
   }
 
   static async updateStudent({ id, data }) {

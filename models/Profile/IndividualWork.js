@@ -5,7 +5,7 @@ const IndividualWork = sequelize.define(
   "IndividualWork",
   {
     workDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     participant: {

@@ -2,32 +2,32 @@ import initModels from "../../models/initModels.js";
 
 const models = initModels();
 
-const user = await models.User.create({
-  login: "admin",
-  password: "admin",
-});
+// const user = await models.User.create({
+//   login: "admin",
+//   password: "admin",
+// });
 
-const curator = await models.Curator.create({
-  surname: "Иванов",
-  name: "Иван",
-  patronymic: "Иванович",
-});
+// const curator = await models.Curator.create({
+//   surname: "Иванов",
+//   name: "Иван",
+//   patronymic: "Иванович",
+// });
 
-await user.setCurator(curator);
+// await user.setCurator(curator);
 
-const groupName = await models.GroupName.create({
-  name: "Информационные системы и программирование",
-});
+// const groupName = await models.GroupName.create({
+//   name: "Информационные системы и программирование",
+// });
 
-const groupNumber = await models.GroupNumber.create({
-  number: 403,
-});
+// const groupNumber = await models.GroupNumber.create({
+//   number: 403,
+// });
 
-await models.Group.create({
-  groupName: groupName.name,
-  groupNumber: groupNumber.number,
-  curatorId: user.id,
-});
+// await models.Group.create({
+//   groupName: groupName.name,
+//   groupNumber: groupNumber.number,
+//   curatorId: user.id,
+// });
 
 await models.RelationName.bulkCreate([
   { name: "Мать" },
@@ -50,6 +50,7 @@ await models.RelationName.bulkCreate([
   { name: "Мать" },
   { name: "Бабушка" },
   { name: "Дедушка" },
+  { name: "Опекун" },
 ]);
 
 // const student = await models.Student.create({
