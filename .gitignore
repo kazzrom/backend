@@ -4,8 +4,7 @@ node_modules
 .flaskenv*
 !.env.project
 !.env.vault
+!.env_example
 tests
 data
-Dockerfile
 docker-compose.yaml
-.dockerignore
