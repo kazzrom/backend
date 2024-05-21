@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . .
 
+RUN node ./commands/queries/baseQuery.js
+
 CMD [ "node", "index.js" ]

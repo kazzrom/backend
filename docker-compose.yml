@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  db:
+    image: mysql
+    # container_name: mysql-docker
+    restart: always
+    environment:
+      - MYSQL_DATABASE=curator_journal
+      - MYSQL_ROOT_PASSWORD=hjvfirf
+    volumes:
+      - ./data/db:/var/lib/mysql
+
+  api:
+    build: .
+    # env_file:
+    #   - .env
+    environment:
+      # - DB_URL=mysql://root:hjvfirf@db/curator_journal
+      - DB_NAME=curator_journal
+      - DB_USERNAME=root
+      - DB_PASSWORD=hjvfirf
+      - DB_HOST=db
+      - DB_PORT=3306
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+    depends_on:
+      - db
