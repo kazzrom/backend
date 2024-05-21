@@ -11,6 +11,7 @@ import UnderWardshipRouter from "./UnderWardshipRouter.js";
 import UnemployedRouter from "./UnemployedRouter.js";
 import LargeFamilyRouter from "./LargeFamilyRouter.js";
 import StudentsWithFamilyController from "../../controllers/SocialPassport/StudentWithFamilyController.js";
+import GeneralInformationController from "../../controllers/SocialPassport/GeneralInformationController.js";
 
 const socialPassportRouter = Router();
 
@@ -29,6 +30,11 @@ socialPassportRouter.use("/large-families", LargeFamilyRouter);
 socialPassportRouter.get(
   "/students-with-parents/",
   StudentsWithFamilyController
+);
+
+socialPassportRouter.get(
+  "/general-information",
+  GeneralInformationController.getGeneralInformation
 );
 
 export default socialPassportRouter;
