@@ -1,4 +1,5 @@
 import initModels from "../../models/initModels.js";
+import { Op } from "sequelize";
 
 const {
   Student,
@@ -10,13 +11,30 @@ const {
 
 export default class StudentRepository {
   static async getAllStudentByGroupId(groupId) {
-    const students = await Student.findAll({
-      where: { groupId },
+    let students = await Student.findAll({
+      where: {
+        groupId,
+      },
       include: [PersonalData],
     });
 
     if (!students) {
       return null;
+    }
+
+    const expelledStudents = students.filter((student) => {
+      if (student.note) {
+        return student.note.toLowerCase().includes("отчислен");
+      }
+
+      return false;
+    });
+
+    if (expelledStudents.length > 0) {
+      students = students.filter(
+        (student) => !expelledStudents.includes(student)
+      );
+      students = students.concat(expelledStudents);
     }
 
     return students;
