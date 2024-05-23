@@ -3,5 +3,5 @@ import initModels from "../models/initModels.js";
 
 const { IndividualWork, Student, PersonalData } = initModels();
 
-sequelize.sync({ alter: true });
-// PersonalData.sync({ alter: true });
+// sequelize.sync({ alter: true });
+PersonalData.sync({ alter: true });

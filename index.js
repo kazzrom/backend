@@ -14,15 +14,21 @@ import StudentRouter from "./routers/Group/StudentRouter.js";
 import ProfileRouter from "./routers/Profile/ProfileRouter.js";
 import ProtocolRouter from "./routers/Protocols/ProtocolRouter.js";
 import SocialPassportRouter from "./routers/SocialPassport/SocialPassportRouter.js";
+import ImageRouter from "./routers/Profile/ImageRouter.js";
 
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+
+app.use("/static", express.static("./static"));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
+
+app.use(express.static("uploads"));
 
 app.use(
   Fingerprint({
@@ -37,6 +43,7 @@ app.use("/groups", GroupRouter);
 app.use("/students", StudentRouter);
 app.use("/profile", ProfileRouter);
 app.use("/protocols", ProtocolRouter);
+app.use("/images", ImageRouter);
 app.use("/social-passport", TokenService.checkAccess, SocialPassportRouter);
 
 app.use("/auth", AuthRootRouter);

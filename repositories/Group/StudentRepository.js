@@ -173,4 +173,8 @@ export default class StudentRepository {
     });
     student.destroy({ force: true });
   }
+
+  static async updateImage({ id, image }) {
+    await PersonalData.update({ image }, { where: { studentId: id } });
+  }
 }
