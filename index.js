@@ -49,7 +49,7 @@ app.use("/social-passport", TokenService.checkAccess, SocialPassportRouter);
 app.use("/auth", AuthRootRouter);
 
 app.get("/resource/protected", TokenService.checkAccess, (req, res) => {
-  return res.status(200).json(req.curator.surname + " " + req.curator.name);
+  return res.status(200).json({ curator: req.curator, group: req.group });
 });
 
 app.listen(PORT, () => {

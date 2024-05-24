@@ -46,6 +46,7 @@ class TokenService {
       });
 
       req.groupId = group.id;
+      req.group = group;
     } catch (error) {
       console.log(error);
       return next(new Forbidden(error));
