@@ -1,4 +1,5 @@
 import FamilyRepository from "../../repositories/Profile/FamilyRepository.js";
+import { Conflict } from "../../utils/Errors.js";
 
 export default class FamilyService {
   static async getAllFamilyMembersByStudentId(studentId) {
@@ -17,6 +18,19 @@ export default class FamilyService {
 
   static async createFamilyMember(data) {
     const { surname, name, patronymic, relation } = data;
+
+    if (data.MemberPersonalDatum.phoneNumber) {
+      const familyMemberByPhoneNumber =
+        await FamilyRepository.getFamilyMemberByPhoneNumber(
+          data.MemberPersonalDatum.phoneNumber
+        );
+
+      if (familyMemberByPhoneNumber) {
+        throw new Conflict(
+          "Родственник с таким номером телефона уже существует в базе данных"
+        );
+      }
+    }
 
     const newFamilyMember = await FamilyRepository.createFamilyMember({
       studentId: data.studentId,

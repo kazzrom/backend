@@ -30,6 +30,23 @@ export default class FamilyRepository {
     return familyMember;
   }
 
+  static async getFamilyMemberByPhoneNumber(phoneNumber) {
+    const familyMember = await FamilyMember.findOne({
+      include: {
+        model: MemberPersonalData,
+        where: {
+          phoneNumber,
+        },
+      },
+    });
+
+    if (!familyMember) {
+      return null;
+    }
+
+    return familyMember;
+  }
+
   static async createFamilyMember({
     studentId,
     familyMember,

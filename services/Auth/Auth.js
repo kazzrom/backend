@@ -20,7 +20,12 @@ class AutoService {
 
     const hashedPassword = bcrypt.hashSync(password, 8);
 
-    const { id } = await UserRepository.createUser({ login, hashedPassword, curator, group });
+    const { id } = await UserRepository.createUser({
+      login,
+      hashedPassword,
+      curator,
+      group,
+    });
 
     const payload = { id, login };
 
@@ -44,13 +49,13 @@ class AutoService {
     const userData = await UserRepository.getUserData(login);
 
     if (!userData) {
-      throw new NotFound("Такого пользователя не существует!");
+      throw new NotFound("Пользователя с таким логином не существует!");
     }
 
     const IsPasswordValid = bcrypt.compareSync(password, userData.password);
 
     if (!IsPasswordValid) {
-      throw new Unauthorized("Неверный логин или пароль");
+      throw new Unauthorized("Неверный пароль!");
     }
 
     // Может и пароль добавить для генерации
