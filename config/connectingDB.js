@@ -1,7 +1,13 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
+import { IS_DOCKER_RUNNING } from "../constants.js";
 
-dotenv.config();
+if (!IS_DOCKER_RUNNING) {
+  dotenv.config();
+}
+
+console.log("connectingDB");
+console.log(process.env.DB_NAME);
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,

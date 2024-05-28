@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import { ACCESS_TOKEN_EXPIRATION } from "../../constants.js";
-import UserRepository from "../../repositories/Auth/User.js";
-import RefreshSessionsRepository from "../../repositories/Auth/RefreshSessions.js";
+import UserRepository from "../../repositories/Auth/UserRepository.js";
+import RefreshSessionsRepository from "../../repositories/Auth/RefreshSessionsRepository.js";
 import {
   Conflict,
   Forbidden,

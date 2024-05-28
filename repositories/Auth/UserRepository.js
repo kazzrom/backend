@@ -1,7 +1,7 @@
 import sequelize from "../../config/connectingDB.js";
 import initModels from "../../models/initModels.js";
 
-const { User, Curator, Group, GroupName, GroupNumber } = initModels(sequelize);
+const { User, Curator, Group, GroupNumber } = initModels(sequelize);
 
 class UserRepository {
   static async createUser({ login, hashedPassword, curator, group }) {

@@ -6,3 +6,5 @@ export const COOKIE_SETTINGS = {
 };
 
 export const ACCESS_TOKEN_EXPIRATION = 18e5;
+
+export const IS_DOCKER_RUNNING = false;
