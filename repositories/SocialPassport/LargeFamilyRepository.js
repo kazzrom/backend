@@ -1,10 +1,10 @@
 import { Op } from "sequelize";
 import initModels from "../../models/initModels.js";
 
-const { Student, LargeFamily, FamilyMember } = initModels();
+const { Student, FamilyMember } = initModels();
 
 export default class LargeFamilyRepository {
-  static async getRecordsByGroupId(groupId) {
+  static async getRecords(groupId) {
     const families = await Student.findAll({
       where: { groupId },
       include: [

@@ -1,5 +1,4 @@
 import initModels from "../../models/initModels.js";
-import { Op } from "sequelize";
 
 const {
   Student,

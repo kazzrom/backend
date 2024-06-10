@@ -10,7 +10,7 @@ import {
 } from "../../utils/Errors.js";
 import TokenService from "./Token.js";
 
-class AutoService {
+class AuthService {
   static async signUp({ login, password, fingerprint, curator, group }) {
     const userData = await UserRepository.getUserData(login);
 
@@ -129,4 +129,4 @@ class AutoService {
   }
 }
 
-export default AutoService;
+export default AuthService;

@@ -3,7 +3,7 @@ import LargeFamilyRepository from "../../repositories/SocialPassport/LargeFamily
 export default class LargeFamilyController {
   static async getRecords(req, res) {
     try {
-      const response = await LargeFamilyRepository.getRecordsByGroupId(
+      const response = await LargeFamilyRepository.getRecords(
         req.groupId
       );
       res.status(200).json(response);

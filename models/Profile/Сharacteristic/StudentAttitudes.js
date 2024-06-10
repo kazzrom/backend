@@ -6,7 +6,7 @@ import Student from "../../Group/Student.js";
 const StudentAttitudes = sequelize.define(
   "StudentAttitudes",
   {
-    //   Отношение к учебе
+    // Отношение к учебе
     attitudeToStudy: DataTypes.TEXT,
     
     // Отношение к старшим
